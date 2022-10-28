@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &16042247
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3095a7f095dc24f4ba13ff6e0fea37c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -467,7 +467,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0f4d055365a811a4dbd6ca5a659df7cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -663,7 +663,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3095a7f095dc24f4ba13ff6e0fea37c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -702,7 +702,7 @@ Transform:
   m_GameObject: {fileID: 1004031280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.25, z: 0}
-  m_LocalScale: {x: 10, y: 0.5, z: 10}
+  m_LocalScale: {x: 20, y: 0.5, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -720,11 +720,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77504243506c2b24bbac1b011a05b8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnitude: 1
   rb: {fileID: 1004031288}
-  shaking: 0
-  time: 0
+  time: 60
   bounding: 0.5
+  lvl: 0
 --- !u!54 &1004031288
 Rigidbody:
   m_ObjectHideFlags: 0
