@@ -5,7 +5,7 @@ using UnityEngine;
 public class GroundShake : MonoBehaviour
 {
    
-    public Rigidbody rb;
+    Rigidbody rb;
     bool shaking;
     public float time;
     public float bounding;
@@ -35,8 +35,8 @@ public class GroundShake : MonoBehaviour
     {
         //time = 60;
         shaking = true;
-        
-        
+
+        rb = GetComponent<Rigidbody>();
 
         switch(lvl)
         {
