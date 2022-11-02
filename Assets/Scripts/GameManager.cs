@@ -55,12 +55,17 @@ public class GameManager : MonoBehaviour
     //change what the game state is, if build/action, (re)start timer
     void setGameState(GameState newPhase)
     {
+        GameState prevState = currPhase;
         currPhase = newPhase;
         if(newPhase == GameState.actionPhase || newPhase == GameState.buildPhase)
         {
             phaseTimer = 0;
             phaseActive = true;
             Debug.Log(getGameState() + phaseTimer);
+        }
+        if(newPhase == GameState.paused)
+        {
+            
         }
     }
 
