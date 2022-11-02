@@ -33,7 +33,7 @@ public class PointManager : MonoBehaviour
     bool canMoveObjects = true; //True by default cause the player should be on build phase. Sets to false once action phase begins.
 
     //Define points value
-    int points = 0;
+    int points = 60;
     GlobalDataManager globalData;
 
     //This function controls the checker, which tells the game how well the player has done in their defense.
@@ -55,7 +55,7 @@ public class PointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        points = 0;
+        points = 60; //BM: start with 60 points to spend on 
         
         GlobalDataManager.globalDataManager.playerPts = points;
         globalData = GlobalDataManager.globalDataManager;
