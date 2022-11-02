@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class PointManager : MonoBehaviour
 {
+
     //Define variables for all different building block types
     //**Temporary value names, as the actual block types are not finalized**
     int blockA = 0;
@@ -42,7 +43,8 @@ public class PointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //BM: Points link to event system
+        EventSystem.Instance.OnPointsChange += OnPointsChange;
     }
 
     // Update is called once per frame
@@ -60,5 +62,15 @@ public class PointManager : MonoBehaviour
         //}}
 
         
+    }
+
+    private void OnPointsChange(int pts)
+    {
+
+    }
+
+    private void OnDestroy()
+    {
+        EventSystem.Instance.OnPointsChange -= OnPointsChange;
     }
 }

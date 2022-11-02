@@ -17,6 +17,7 @@ public class GroundShake : MonoBehaviour
 
     public enum Levels
     {
+        L00,
         L0,
         L1,
         L2,
@@ -42,6 +43,9 @@ public class GroundShake : MonoBehaviour
 
         switch(lvl)
         {
+            case Levels.L00:
+                StopCoroutine(EarthquakeGenerator(0,0));
+                break;
             case Levels.L0:
                 StartCoroutine(EarthquakeGenerator(0.5f, 5f));
                 bounding = 1f;

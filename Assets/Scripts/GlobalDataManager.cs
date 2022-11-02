@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GlobalDataManager : MonoBehaviour
 {
+    public static GlobalDataManager Instance;
     //game phases to control what the player can do at what time
     enum GameState
     {
@@ -23,9 +24,16 @@ public class GameManager : MonoBehaviour
     public Scene mainGame;
     public Scene endGame;
 
+    public int playerPts;
+
+    public bool quakeActive;
+
+    public float volume = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
+        quakeActive = false;
         phaseActive = false;
         currPhase = GameState.startPhase;
         SceneManager.SetActiveScene(startScreen);
@@ -78,6 +86,16 @@ public class GameManager : MonoBehaviour
     void setScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+    }
+
+    public void resetGame()
+    {
+        //set points to 0
+    }
+
+    public void startBuildPhase()
+    {
+        //set up for the build phase, stop shaking
     }
 
 }
