@@ -13,12 +13,16 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         EventSystem.Instance.OnPhaseChange += ChangePhase;
+        globalData = GlobalDataManager.globalDataManager;
+        phaseText.text = "Phase: ";
+        levelText.text = "Level: ";
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        levelText.text = "Level: " + (GlobalDataManager.globalDataManager.currLevel + 1);
+        phaseText.text = "Phase: Start";
     }
 
     private void ChangePhase(LevelPhase phase)
@@ -29,6 +33,7 @@ public class LevelManager : MonoBehaviour
             //globalData.currPhase = GlobalDataManager.GameState.actionPhase;
             globalData.phaseTimer = 0;
             phaseText.text = "Phase: Action";
+            GlobalDataManager.globalDataManager.quakeActive = true;
         }
         else
         {
@@ -36,7 +41,8 @@ public class LevelManager : MonoBehaviour
             //globalData.currPhase = GlobalDataManager.GameState.buildPhase;
             globalData.phaseTimer = 0;
             phaseText.text = "Phase: Build";
-
+            globalData.currLevel++;
+            GlobalDataManager.globalDataManager.quakeActive = false;
 
         }
     }

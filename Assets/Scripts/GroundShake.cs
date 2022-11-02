@@ -10,7 +10,7 @@ public class GroundShake : MonoBehaviour
     public float bounding;
     float frequency;
     float amplitude;
-
+    int activeLevel;
     GlobalDataManager globalDataManager;
 
 
@@ -36,7 +36,9 @@ public class GroundShake : MonoBehaviour
     void Start()
     {
         shaking = GlobalDataManager.globalDataManager.getQuake();
+        activeLevel = 0;
 
+        
 
         rb = GetComponent<Rigidbody> ();
 
@@ -107,6 +109,11 @@ public class GroundShake : MonoBehaviour
     {
         shaking = GlobalDataManager.globalDataManager.getQuake();
         //Debug.Log("Quake is " + shaking);
+
+        activeLevel = GlobalDataManager.globalDataManager.currLevel;
+
+        lvl = (Levels)activeLevel;
+        //Debug.Log(lvl);
 
         if (shaking == true)
         {

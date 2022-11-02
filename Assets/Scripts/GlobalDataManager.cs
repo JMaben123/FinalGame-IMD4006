@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GlobalDataManager : MonoBehaviour
 {
     public static GlobalDataManager globalDataManager;
+    public TextMeshProUGUI timerText;
     //game phases to control what the player can do at what time
     public enum GameState
     {
@@ -53,11 +55,12 @@ public class GlobalDataManager : MonoBehaviour
     {
         quakeActive = false;
         phaseActive = true;
+        phaseTimer = 0;
         currPhase = GameState.buildPhase;
         currLevel = 0;
         //SceneManager.SetActiveScene(startScreen);
         StartCoroutine(phaseTimerCount());
-
+        timerText.text = "Time Remaining In Phase: " + phaseTimer;
        
     }
 
@@ -69,8 +72,14 @@ public class GlobalDataManager : MonoBehaviour
         {
             phaseActive = true;
         }
+        
+        if(phaseTimer == 60)
+        {
+            EventSystem.Instance.changePhase((LevelPhase)currPhase);
+        }
 
-        if(currPhase == GameState.actionPhase && phaseTimer == 60)
+        timerText.text = "Time Remaining In Phase: " + (60 - phaseTimer);
+        /*if(currPhase == GameState.actionPhase && phaseTimer == 60)
         {
             currPhase = GameState.buildPhase;
             quakeActive = false;
@@ -81,7 +90,7 @@ public class GlobalDataManager : MonoBehaviour
             currPhase = GameState.actionPhase;
             quakeActive = true;
             phaseTimer = 0;
-        }
+        }*/
     }
 
     IEnumerator phaseTimerCount()
@@ -122,4 +131,13 @@ public class GlobalDataManager : MonoBehaviour
         return quakeActive;
     }
 
+    public void setLevel(int lvl)
+    {
+        currLevel = lvl;
+    }
+
+    public int getLevel()
+    {
+        return currLevel;
+    }
 }
