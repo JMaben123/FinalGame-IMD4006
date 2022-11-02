@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5755396348412296985}
   - component: {fileID: 6360482381659837701}
   - component: {fileID: 5392752258015669794}
+  - component: {fileID: 4424495127731858883}
   m_Layer: 0
   m_Name: towerBase
   m_TagString: Untagged
@@ -114,3 +115,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4424495127731858883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6006146051264724660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37732b16959463a4c8c499acbe72267e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
