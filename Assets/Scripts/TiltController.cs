@@ -9,6 +9,8 @@ public class TiltController : MonoBehaviour
     private float tiltTimer = 0.0f;
     public float speedController = 1.5f; //This value controls the speed in buttonTimer()
 
+    bool canRotate;
+
     //This function controls the timer (through Update), and only activates when the player inputs
     void buttonTimer()
     {
@@ -89,8 +91,14 @@ public class TiltController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Activate functions
-        rotatorInput();
-        geoTilter();
+        canRotate = GlobalDataManager.globalDataManager.quakeActive;
+
+        if(canRotate)
+        {
+            //Activate functions
+            rotatorInput();
+            geoTilter();
+        }
+        
     }
 }

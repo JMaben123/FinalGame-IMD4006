@@ -38,12 +38,20 @@ public class Placement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        placeBlock();
+
+    }
+
+    public void placeBlock()
+    {
+        //BM: move block placement commands here?
         if (Input.GetKeyDown(KeyCode.T))
         {
             //
             Instantiate(obj1, new Vector3(platform.transform.position.x, platform.transform.position.y + y, platform.transform.position.z), Quaternion.identity);
-
-
+            GlobalDataManager.globalDataManager.numBlocks += 1;
+            Debug.Log(GlobalDataManager.globalDataManager.numBlocks);
+            //EventSystem.Instance.blockPlaced();
             //Debug.Log("T pressed");
         }
 
@@ -51,20 +59,24 @@ public class Placement : MonoBehaviour
         {
             Instantiate(obj2, new Vector3(platform.transform.position.x, platform.transform.position.y + y, platform.transform.position.z), Quaternion.identity);
             //Debug.Log("Y pressed");
+            GlobalDataManager.globalDataManager.numBlocks += 1;
         }
 
         if (Input.GetKeyDown(KeyCode.U))
         {
             Instantiate(obj3, new Vector3(platform.transform.position.x, platform.transform.position.y + y, platform.transform.position.z), Quaternion.identity);
             //Debug.Log("U pressed");
+            GlobalDataManager.globalDataManager.numBlocks += 1;
         }
 
         if (Input.GetKeyDown(KeyCode.I))
         {
             Instantiate(obj4, new Vector3(platform.transform.position.x, platform.transform.position.y + y, platform.transform.position.z), Quaternion.identity);
             //Debug.Log("I pressed");
+            GlobalDataManager.globalDataManager.numBlocks += 1;
         }
 
+        
     }
 
 }
