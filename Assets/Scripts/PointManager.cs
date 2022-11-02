@@ -55,37 +55,47 @@ public class PointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numLevels = globalData.numBlocks;   
+        points = 0;
+        
+        GlobalDataManager.globalDataManager.playerPts = points;
+        globalData = GlobalDataManager.globalDataManager;
+        numLevels = globalData.numBlocks;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (globalData.currPhase == GlobalDataManager.GameState.buildPhase)
-        {
-            //BM: do a calculation for each level placed
-            if(globalData.playerPts == 0)
+        if(numLevels < globalData.numBlocks) { 
+            numLevels++; 
+            if (GlobalDataManager.globalDataManager.getGameState() == GlobalDataManager.GameState.buildPhase)
             {
-                points = ptsPerLevel * numLevels;
+                //BM: do a calculation for each level placed
+                if(GlobalDataManager.globalDataManager.playerPts == 0)
+                {
+                    points = ptsPerLevel * numLevels;
+                    /*Debug.Log("pts per lvl: " + ptsPerLevel);
+                    Debug.Log("num lvls" + numLevels);*/
+                }
+                else
+                {
+                    points += ptsPerLevel;
+
+                    //Debug.Log("Points: " + points);
+                }
             }
-            else
+            if((GlobalDataManager.globalDataManager.getGameState() == GlobalDataManager.GameState.actionPhase) && (GlobalDataManager.globalDataManager.phaseEnding))
             {
-                points += ptsPerLevel * numLevels;
+                if (GlobalDataManager.globalDataManager.playerPts == 0)
+                {
+                    points = ptsPerLvlSurvive * lvlsSurvived;
+                }
+                else
+                {
+                    points += ptsPerLvlSurvive * lvlsSurvived;
+                    points += flagHeight * ptsPerHeight;
+                }
             }
         }
-        if((globalData.currPhase == GlobalDataManager.GameState.actionPhase) && (globalData.phaseEnding))
-        {
-            if (globalData.playerPts == 0)
-            {
-                points = ptsPerLvlSurvive * lvlsSurvived;
-            }
-            else
-            {
-                points += ptsPerLvlSurvive * lvlsSurvived;
-                points += flagHeight * ptsPerHeight;
-            }
-        }
-    }
 
         //**Pseudocode**
         //Add once game manager adds the Earthquake timer
@@ -93,14 +103,16 @@ public class PointManager : MonoBehaviour
 
         //if (hasPointsSent == false && earthquakeTimer < 0 && flagPosition.y > 0)
         //{{
-            //winPoints();
-            //Set the flag to true so that the game isn't constantly adding points to the player
-            hasPointsSent = true;
+        //winPoints();
+        //Set the flag to true so that the game isn't constantly adding points to the player
+        hasPointsSent = true;
         //}}
 
-        globalData.playerPts = points;
-        
+        GlobalDataManager.globalDataManager.playerPts = points;
+        EventSystem.Instance.changePoints(points);
+        //Debug.Log(points);
     }
+
 
     
 }

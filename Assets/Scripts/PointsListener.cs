@@ -22,7 +22,7 @@ public class PointsListener : MonoBehaviour
 
     private void OnPointsChange(int pts)
     {
-        points.text = "Points:" + pts;
+        points.text = "Points: " + pts;
     }
 
     private void OnDestroy()

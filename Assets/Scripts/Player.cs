@@ -22,11 +22,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!UIUpdated)
-        {
-            AddPoints(0);
-            UIUpdated = true;
-        }
+        
+        //AddPoints(0);
         if (Input.GetKeyDown(pause))
         {
             EventSystem.Instance.PauseGame();

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GroundShake : MonoBehaviour
 {
-   
     Rigidbody rb;
     bool shaking;
     public float time;
@@ -37,15 +36,13 @@ public class GroundShake : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shaking = true;
+        shaking = false;
+        
 
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody> ();
 
         switch(lvl)
         {
-            case Levels.L00:
-                StopCoroutine(EarthquakeGenerator(0,0));
-                break;
             case Levels.L0:
                 StartCoroutine(EarthquakeGenerator(0.5f, 5f));
                 bounding = 1f;
@@ -102,8 +99,6 @@ public class GroundShake : MonoBehaviour
                 StartCoroutine(EarthquakeGenerator(0.5f, 5f));
                 bounding = 0.5f;
                 break;
-
-
         }
 
     }
@@ -111,9 +106,11 @@ public class GroundShake : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(shaking == true)
-        {
+        shaking = GlobalDataManager.globalDataManager.quakeActive;
+        //Debug.Log("Quake is " + shaking);
 
+        if (shaking == true)
+        {
             rb.isKinematic = false;
         }
         else
@@ -140,7 +137,7 @@ public class GroundShake : MonoBehaviour
                 float force = amplitudeArray[i] * amplitude;
                 rb.AddForce(force, 0, force, ForceMode.VelocityChange);
                 yield return new WaitForSeconds(frequency);
-                print("force Applied: " + force);
+                //print("force Applied: " + force);
                 if (i == amplitudeArray.Length)
                 {
                     i = 0;
@@ -159,30 +156,5 @@ public class GroundShake : MonoBehaviour
         }
 
 
-    }
-
-
-
-
- /*   void shake(int magnitude)
-    {
-        float amount = Random.Range(-10f, 10f);
-        amount = amount * magnitude;
-        //rb.AddForce(0,amount,0);
-        rb.AddForce(amount, 0, amount);
-        //rb.AddRelativeForce(amount, 0, amount);
-    
-        if(rb.transform.position.x < -bounding || rb.transform.position.x > bounding || rb.transform.position.z < -bounding || rb.transform.position.z > bounding)
-        {
-            
-            rb.transform.position = Vector3.Lerp(rb.transform.position, new Vector3(0,0.25f,0), time * Time.deltaTime);
-            
-        }
-            
-
-        //intensity value controlled by sin curve
-    }*/
-
-
-   
+    }   
 }

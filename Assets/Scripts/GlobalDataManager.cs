@@ -13,8 +13,8 @@ public class GlobalDataManager : MonoBehaviour
         actionPhase
     }
 
-    int phaseTimer;
-    bool phaseActive;
+    public int phaseTimer;
+    public bool phaseActive;
 
     public GameState currPhase;
     public Scene startScreen;
@@ -50,18 +50,33 @@ public class GlobalDataManager : MonoBehaviour
     void Start()
     {
         quakeActive = false;
-        phaseActive = false;
-        SceneManager.SetActiveScene(startScreen);
-        StartCoroutine(phaseTimerCount()); 
+        phaseActive = true;
+        currPhase = GameState.buildPhase;
+        //SceneManager.SetActiveScene(startScreen);
+        StartCoroutine(phaseTimerCount());
+       
     }
 
     // Update is called once per frame
     void Update()
     {
         //switch for game state
+        if (!phaseActive)
+        {
+            phaseActive = true;
+        }
+
         if(currPhase == GameState.actionPhase && phaseTimer == 60)
         {
-            setGameState(GameState.buildPhase);
+            currPhase = GameState.buildPhase;
+            quakeActive = false;
+            phaseTimer = 0;
+        }
+        if(currPhase == GameState.buildPhase && phaseTimer == 60)
+        {
+            currPhase = GameState.actionPhase;
+            quakeActive = true;
+            phaseTimer = 0;
         }
     }
 
@@ -69,27 +84,21 @@ public class GlobalDataManager : MonoBehaviour
     {
         while (phaseActive)
         {
+            //Debug.Log("+1 phase timer");
+
             phaseTimer += 1;
             yield return new WaitForSeconds(1f);
-            
         }
     }
 
     //change what the game state is, if build/action, (re)start timer
-    void setGameState(GameState newPhase)
+    public void setGameState(GameState newPhase)
     {
-        GameState prevState = currPhase;
         currPhase = newPhase;
-        if(newPhase == GameState.actionPhase || newPhase == GameState.buildPhase)
-        {
-            phaseTimer = 0;
-            phaseActive = true;
-            Debug.Log(getGameState() + phaseTimer);
-        }
     }
 
     //gets the game state to control other scripts
-    GameState getGameState()
+    public GameState getGameState()
     {
         return currPhase;
     }
