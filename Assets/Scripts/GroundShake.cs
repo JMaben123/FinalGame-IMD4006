@@ -12,7 +12,7 @@ public class GroundShake : MonoBehaviour
     float frequency;
     float amplitude;
 
-    GameManager gameManager;
+    GlobalDataManager globalDataManager;
 
 
     public enum Levels

@@ -5,21 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GlobalDataManager : MonoBehaviour
 {
-    public static GlobalDataManager Instance;
+    public static GlobalDataManager globalDataManager;
     //game phases to control what the player can do at what time
-    enum GameState
+    public enum GameState
     {
-        startPhase,
         buildPhase,
-        actionPhase,
-        endPhase,
-        paused
+        actionPhase
     }
 
     int phaseTimer;
     bool phaseActive;
 
-    GameState currPhase;
+    public GameState currPhase;
     public Scene startScreen;
     public Scene mainGame;
     public Scene endGame;
@@ -30,12 +27,30 @@ public class GlobalDataManager : MonoBehaviour
 
     public float volume = 1f;
 
+    public bool phaseEnding = false;
+    public bool nextPhaseStarting = false;
+
+    public int numBlocks = 0;
+
+
+    private void Awake()
+    {
+        if(globalDataManager == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            globalDataManager = this;
+        }
+        else if(globalDataManager != this)
+        {
+            Destroy(gameObject);
+        }
+
+    }
     // Start is called before the first frame update
     void Start()
     {
         quakeActive = false;
         phaseActive = false;
-        currPhase = GameState.startPhase;
         SceneManager.SetActiveScene(startScreen);
         StartCoroutine(phaseTimerCount()); 
     }
@@ -70,10 +85,6 @@ public class GlobalDataManager : MonoBehaviour
             phaseTimer = 0;
             phaseActive = true;
             Debug.Log(getGameState() + phaseTimer);
-        }
-        if(newPhase == GameState.paused)
-        {
-            
         }
     }
 

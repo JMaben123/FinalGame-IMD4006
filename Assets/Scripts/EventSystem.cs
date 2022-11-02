@@ -68,6 +68,16 @@ public class EventSystem : MonoBehaviour
         }
     }
 
+    public event Action OnBlockPlaced;
+
+    public void blockPlaced()
+    {
+        if(OnBlockPlaced != null)
+        {
+            OnBlockPlaced();          
+        }
+    }
+
 
     public event Action OnGamePause;
     

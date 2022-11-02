@@ -67,4 +67,9 @@ public class Placement : MonoBehaviour
 
     }
 
+    public void placeBlock()
+    {
+        //BM: move block placement commands here?
+    }
+
 }
