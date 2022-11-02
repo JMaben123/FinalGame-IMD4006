@@ -54,6 +54,7 @@ public class GlobalDataManager : MonoBehaviour
         currPhase = GameState.buildPhase;
         //SceneManager.SetActiveScene(startScreen);
         StartCoroutine(phaseTimerCount());
+
        
     }
 
@@ -113,9 +114,9 @@ public class GlobalDataManager : MonoBehaviour
         //set points to 0
     }
 
-    public void startBuildPhase()
+    public bool getQuake()
     {
-        //set up for the build phase, stop shaking
+        return quakeActive;
     }
 
 }

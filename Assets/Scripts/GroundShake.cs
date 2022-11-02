@@ -16,7 +16,6 @@ public class GroundShake : MonoBehaviour
 
     public enum Levels
     {
-        L00,
         L0,
         L1,
         L2,
@@ -36,8 +35,8 @@ public class GroundShake : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shaking = false;
-        
+        shaking = GlobalDataManager.globalDataManager.getQuake();
+
 
         rb = GetComponent<Rigidbody> ();
 
@@ -106,7 +105,7 @@ public class GroundShake : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        shaking = GlobalDataManager.globalDataManager.quakeActive;
+        shaking = GlobalDataManager.globalDataManager.getQuake();
         //Debug.Log("Quake is " + shaking);
 
         if (shaking == true)
