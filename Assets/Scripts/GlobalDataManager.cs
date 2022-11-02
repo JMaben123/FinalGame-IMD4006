@@ -32,6 +32,8 @@ public class GlobalDataManager : MonoBehaviour
 
     public int numBlocks = 0;
 
+    public int currLevel;
+
 
     private void Awake()
     {
@@ -52,6 +54,7 @@ public class GlobalDataManager : MonoBehaviour
         quakeActive = false;
         phaseActive = true;
         currPhase = GameState.buildPhase;
+        currLevel = 0;
         //SceneManager.SetActiveScene(startScreen);
         StartCoroutine(phaseTimerCount());
 

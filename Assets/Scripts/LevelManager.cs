@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     GlobalDataManager globalData;
+    public TextMeshProUGUI phaseText;
+    public TextMeshProUGUI levelText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +28,16 @@ public class LevelManager : MonoBehaviour
             globalData.setGameState(GlobalDataManager.GameState.actionPhase);
             //globalData.currPhase = GlobalDataManager.GameState.actionPhase;
             globalData.phaseTimer = 0;
+            phaseText.text = "Phase: Action";
         }
         else
         {
-           globalData.currPhase = GlobalDataManager.GameState.buildPhase;
+            globalData.setGameState(GlobalDataManager.GameState.buildPhase);
+            //globalData.currPhase = GlobalDataManager.GameState.buildPhase;
             globalData.phaseTimer = 0;
+            phaseText.text = "Phase: Build";
+
+
         }
     }
 
