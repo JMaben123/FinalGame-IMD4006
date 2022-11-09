@@ -35,9 +35,9 @@ public class GroundShake : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shaking = GlobalDataManager.globalDataManager.getQuake();
+        //shaking = GlobalDataManager.globalDataManager.getQuake();
         activeLevel = 0;
-
+        shaking = true;
         
 
         rb = GetComponent<Rigidbody> ();
@@ -90,7 +90,7 @@ public class GroundShake : MonoBehaviour
                 break;
             case Levels.Impossible:
                 StartCoroutine(EarthquakeGenerator(0.1f, 20f));
-                bounding = 5f;
+                //bounding = 5f;
                 break;
             case Levels.ActuallyImpossible:
                 StartCoroutine(EarthquakeGenerator(0.1f, 200f));
@@ -107,10 +107,10 @@ public class GroundShake : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        shaking = GlobalDataManager.globalDataManager.getQuake();
+        //shaking = GlobalDataManager.globalDataManager.getQuake();
         //Debug.Log("Quake is " + shaking);
 
-        activeLevel = GlobalDataManager.globalDataManager.currLevel;
+        //activeLevel = GlobalDataManager.globalDataManager.currLevel;
 
         lvl = (Levels)activeLevel;
         //Debug.Log(lvl);
@@ -135,27 +135,31 @@ public class GroundShake : MonoBehaviour
         while(true)
         {
             float[] amplitudeArray = { 0f,0.5f, 1,0.5f, 0f,-0.5f, -1,-0.5f };
-
+            //float[] amplitudeArray = { 0f, 0.05f, 0.1f, 0.05f, 0f, -0.05f, -0.1f, -0.05f };
+            //int sign = Random.Range(-1, 1);
 
 
             for (int i = 0; i < amplitudeArray.Length; i++)
             {
                 float force = amplitudeArray[i] * amplitude;
-                rb.AddForce(force, 0, force, ForceMode.VelocityChange);
+                //float force = amplitudeArray[i] * amplitude * sign;
+                //float force = (Random.Range(0, amplitudeArray.Length)) * amplitude;
+                //rb.AddForce(force, 0, force, ForceMode.VelocityChange);
+                rb.AddTorque(force, 0, force, ForceMode.VelocityChange);
                 yield return new WaitForSeconds(frequency);
-                //print("force Applied: " + force);
+                print("force Applied: " + force);
                 if (i == amplitudeArray.Length)
                 {
                     i = 0;
                 }
 
-                if (rb.transform.position.x < -bounding || rb.transform.position.x > bounding || rb.transform.position.z < -bounding || rb.transform.position.z > bounding)
+                /*if (rb.transform.position.x < -bounding || rb.transform.position.x > bounding || rb.transform.position.z < -bounding || rb.transform.position.z > bounding)
                 {
                    
                     rb.transform.position = Vector3.Lerp(rb.transform.position, new Vector3(0, 0.25f, 0), time);
                     print("limit");
                     yield return new WaitForSeconds(1f);
-                }
+                }*/
 
             }
 
