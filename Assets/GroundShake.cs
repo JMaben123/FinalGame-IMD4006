@@ -123,12 +123,10 @@ public class GroundShake : MonoBehaviour
         {
             float[] amplitudeArray = { 0f,0.5f, 1,0.5f, 0f,-0.5f, -1,-0.5f };
 
-
-
             for (int i = 0; i < amplitudeArray.Length; i++)
             {
                 float force = amplitudeArray[i] * amplitude;
-                rb.AddForce(force, 0, force, ForceMode.VelocityChange);
+                rb.AddForce(force, 0, force, ForceMode.Force);
                 yield return new WaitForSeconds(frequency);
                 print("force Applied: " + force);
                 if (i == amplitudeArray.Length)

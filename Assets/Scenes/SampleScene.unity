@@ -720,7 +720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77504243506c2b24bbac1b011a05b8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1004031288}
   time: 60
   bounding: 0.5
   lvl: 0
