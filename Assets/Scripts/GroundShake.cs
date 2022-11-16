@@ -14,6 +14,9 @@ public class GroundShake : MonoBehaviour
     GlobalDataManager globalDataManager;
 
 
+
+    //NOTE: USE MODIFIER TO ADD UP MASS OF ALL OBJECTS ON THE FLOOR AND ADD AS A MULTIPLIER LIKE THE AMPLITUDE.
+
     public enum Levels
     {
         L0,
@@ -41,8 +44,9 @@ public class GroundShake : MonoBehaviour
         
 
         rb = GetComponent<Rigidbody> ();
-
-        switch(lvl)
+        rb.constraints = RigidbodyConstraints.FreezePosition;
+        /*
+         switch(lvl)
         {
             case Levels.L0:
                 StartCoroutine(EarthquakeGenerator(0.5f, 5f));
@@ -82,6 +86,67 @@ public class GroundShake : MonoBehaviour
                 break;
             case Levels.L9:
                 StartCoroutine(EarthquakeGenerator(0.25f, 9.5f));
+                bounding = 3f;
+                break;
+            case Levels.L10:
+                StartCoroutine(EarthquakeGenerator(0.25f, 10f));
+                bounding = 3.5f;
+                break;
+            case Levels.Impossible:
+                StartCoroutine(EarthquakeGenerator(0.1f, 20f));
+                //bounding = 5f;
+                break;
+            case Levels.ActuallyImpossible:
+                StartCoroutine(EarthquakeGenerator(0.1f, 200f));
+                bounding = 5f;
+                break;
+            default:
+                StartCoroutine(EarthquakeGenerator(0.5f, 5f));
+                bounding = 0.5f;
+                break;
+        }*/
+
+
+        switch (lvl)
+        {
+            case Levels.L0:
+                StartCoroutine(EarthquakeGenerator(0.5f, 1f));
+                bounding = 1f;
+                break;
+            case Levels.L1:
+                StartCoroutine(EarthquakeGenerator(0.5f, 1f));
+                bounding = 1f;
+                break;
+            case Levels.L2:
+                StartCoroutine(EarthquakeGenerator(0.5f, 2f));
+                bounding = 1.5f;
+                break;
+            case Levels.L3:
+                StartCoroutine(EarthquakeGenerator(0.5f, 3f));
+                bounding = 1.5f;
+                break;
+            case Levels.L4:
+                StartCoroutine(EarthquakeGenerator(0.5f, 4f));
+                bounding = 2f;
+                break;
+            case Levels.L5:
+                StartCoroutine(EarthquakeGenerator(0.25f, 5f));
+                bounding = 2f;
+                break;
+            case Levels.L6:
+                StartCoroutine(EarthquakeGenerator(0.25f, 6f));
+                bounding = 2.5f;
+                break;
+            case Levels.L7:
+                StartCoroutine(EarthquakeGenerator(0.25f, 7f));
+                bounding = 2.5f;
+                break;
+            case Levels.L8:
+                StartCoroutine(EarthquakeGenerator(0.25f, 8f));
+                bounding = 3f;
+                break;
+            case Levels.L9:
+                StartCoroutine(EarthquakeGenerator(0.25f, 9f));
                 bounding = 3f;
                 break;
             case Levels.L10:
@@ -141,11 +206,13 @@ public class GroundShake : MonoBehaviour
 
             for (int i = 0; i < amplitudeArray.Length; i++)
             {
-                float force = amplitudeArray[i] * amplitude;
+                int val = Random.Range(0, amplitudeArray.Length);
+                float force = amplitudeArray[val] * amplitude;
                 //float force = amplitudeArray[i] * amplitude * sign;
                 //float force = (Random.Range(0, amplitudeArray.Length)) * amplitude;
                 //rb.AddForce(force, 0, force, ForceMode.VelocityChange);
                 rb.AddTorque(force, 0, force, ForceMode.VelocityChange);
+                //rb.AddTorque(force, 0, force, ForceMode.Acceleration);
                 yield return new WaitForSeconds(frequency);
                 print("force Applied: " + force);
                 if (i == amplitudeArray.Length)
