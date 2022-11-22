@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -368,6 +368,7 @@ MonoBehaviour:
   obj3: {fileID: 2509942787508208374, guid: 9ab7cd3bd4e9f084b9541fe0e995c02a, type: 3}
   obj4: {fileID: 0}
   platform: {fileID: 689846922}
+  hitCounter: 0
 --- !u!4 &177852793
 Transform:
   m_ObjectHideFlags: 0
@@ -763,7 +764,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 10
   bounding: 0.5
-  blockCount: 0
   lvl: 0
 --- !u!1 &705507993
 GameObject:
@@ -1077,7 +1077,7 @@ GameObject:
   - component: {fileID: 981116690}
   - component: {fileID: 981116689}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1097,7 +1097,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 10
   bounding: 1
-  blockCount: 5
   lvl: 0
 --- !u!54 &981116690
 Rigidbody:

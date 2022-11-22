@@ -8,6 +8,13 @@ public class Joints : MonoBehaviour
 
 
     bool hasJoint;
+    
+
+    private void Start()
+    {
+        
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         //platform = GameObject.Find("platform");
@@ -19,7 +26,7 @@ public class Joints : MonoBehaviour
             gameObject.AddComponent<FixedJoint>().breakTorque = x;
             gameObject.GetComponent<FixedJoint>().connectedBody = collision.rigidbody;
             hasJoint = true;
-
+            
         }
 
     }
