@@ -1,6 +1,7 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 
 
@@ -15,8 +16,7 @@ public class OrbitCamera : MonoBehaviour
     void Start()
     {
 
-        float yVal = gameObject.GetComponent<Transform>().position.y;
-
+        float yVal = gameObject.GetComponent<CinemachineTransposer>().
     }
 
     // Update is called once per frame
