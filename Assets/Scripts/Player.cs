@@ -5,9 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    public KeyCode tiltLeft = KeyCode.A;
-    public KeyCode tileRight = KeyCode.D;
-    public KeyCode placeBlock = KeyCode.M;
+    public KeyCode tiltLeft = KeyCode.Q;
+    public KeyCode tiltRight = KeyCode.E;
+    public KeyCode OrbitLeft = KeyCode.LeftArrow;
+    public KeyCode OrbitRight = KeyCode.RightArrow;
+    public KeyCode placeBlock = KeyCode.Space;
+
     public KeyCode pause = KeyCode.Escape;
 
     private bool UIUpdated = false;

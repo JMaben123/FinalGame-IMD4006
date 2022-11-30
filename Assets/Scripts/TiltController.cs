@@ -21,7 +21,7 @@ public class TiltController : MonoBehaviour
     //Controls the rotations
     void rotatorInput()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             //Activate timer
             buttonTimer();
@@ -29,7 +29,7 @@ public class TiltController : MonoBehaviour
             rotateValZ = -tiltTimer * 1.05f;
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             //Activate timer
             buttonTimer();
@@ -53,7 +53,7 @@ public class TiltController : MonoBehaviour
         }
 
         //If either or button is released
-        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E))
         {
             if (rotateValZ > 0)
             {
