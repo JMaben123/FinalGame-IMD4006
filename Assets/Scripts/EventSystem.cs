@@ -89,4 +89,14 @@ public class EventSystem : MonoBehaviour
         }
     }
 
+    public event Action<int> OnDropBlockChange;
+
+    public void ChangeDropBlock(int newBlock)
+    {
+        if(OnDropBlockChange != null)
+        {
+            OnDropBlockChange(newBlock);
+        }
+    }
+
 }

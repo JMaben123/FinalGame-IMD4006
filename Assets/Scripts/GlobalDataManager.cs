@@ -14,6 +14,20 @@ public class GlobalDataManager : MonoBehaviour
         buildPhase,
         actionPhase
     }
+    public enum AvailableBlocks
+    {
+        BASE_LIGHT,
+        BASE_NORMAL,
+        BASE_HEAVY,
+        MID_LIGHT,
+        MID_NORMAL,
+        MID_HEAVY,
+        TOP_LIGHT,
+        TOP_NORMAL,
+        TOP_HEAVY
+    }
+
+    public AvailableBlocks activeBlock;
 
     public int phaseTimer;
     public bool phaseActive;
@@ -58,27 +72,37 @@ public class GlobalDataManager : MonoBehaviour
         phaseTimer = 0;
         currPhase = GameState.buildPhase;
         currLevel = 0;
+        activeBlock = AvailableBlocks.BASE_LIGHT;
         //SceneManager.SetActiveScene(startScreen);
-        StartCoroutine(phaseTimerCount());
+        //StartCoroutine(phaseTimerCount());
         timerText.text = "Time Remaining In Phase: " + phaseTimer;
        
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        
         //switch for game state
         if (!phaseActive)
         {
             phaseActive = true;
         }
+        EventSystem.Instance.changePhase((LevelPhase)currPhase);
+
+        if (currPhase == GameState.buildPhase){
+            
+            StopCoroutine(phaseTimerCount());
+            phaseTimer = 0;
+        }
         
-        if(phaseTimer == 60)
+        if(currPhase == GameState.actionPhase && phaseTimer == 60)
         {
-            EventSystem.Instance.changePhase((LevelPhase)currPhase);
+            StopCoroutine(phaseTimerCount());
+            phaseTimer = 0;
         }
 
-        timerText.text = "Time Remaining In Phase: " + (60 - phaseTimer);
+        //timerText.text = "Time Remaining In Phase: " + (60 - phaseTimer);
         /*if(currPhase == GameState.actionPhase && phaseTimer == 60)
         {
             currPhase = GameState.buildPhase;
@@ -121,6 +145,11 @@ public class GlobalDataManager : MonoBehaviour
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
+    public void startTimer()
+    {
+        StartCoroutine(phaseTimerCount());
+    }
+
     public void resetGame()
     {
         //set points to 0
@@ -140,4 +169,11 @@ public class GlobalDataManager : MonoBehaviour
     {
         return currLevel;
     }
+
+    public AvailableBlocks getCurrentBlock()
+    {
+        return activeBlock;
+    }
+
+
 }

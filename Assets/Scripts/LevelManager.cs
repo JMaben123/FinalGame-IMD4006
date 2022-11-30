@@ -21,26 +21,26 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        levelText.text = "Level: " + (GlobalDataManager.globalDataManager.currLevel + 1);
-        phaseText.text = "Phase: Start";
+        //levelText.text = "Level: " + (GlobalDataManager.globalDataManager.currLevel + 1);
+        //phaseText.text = "Phase: Start";
     }
 
-    private void ChangePhase(LevelPhase phase)
+    public void ChangePhase(LevelPhase phase)
     {
-        if(phase == LevelPhase.build)
+        if (phase == LevelPhase.build)
         {
             globalData.setGameState(GlobalDataManager.GameState.actionPhase);
             //globalData.currPhase = GlobalDataManager.GameState.actionPhase;
             globalData.phaseTimer = 0;
-            phaseText.text = "Phase: Action";
+            //phaseText.text = "Phase: Action";
             GlobalDataManager.globalDataManager.quakeActive = true;
         }
         else
         {
             globalData.setGameState(GlobalDataManager.GameState.buildPhase);
             //globalData.currPhase = GlobalDataManager.GameState.buildPhase;
-            globalData.phaseTimer = 0;
-            phaseText.text = "Phase: Build";
+            //globalData.phaseTimer = 0;
+            //phaseText.text = "Phase: Build";
             globalData.currLevel++;
             GlobalDataManager.globalDataManager.quakeActive = false;
 
