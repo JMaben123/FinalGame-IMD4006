@@ -16,7 +16,7 @@ public class OrbitCamera : MonoBehaviour
     void Start()
     {
 
-        float yVal = gameObject.GetComponent<CinemachineTransposer>().
+        float yVal = gameObject.GetComponent<Transform>().position.y;
     }
 
     // Update is called once per frame
