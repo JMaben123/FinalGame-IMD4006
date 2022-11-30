@@ -6,6 +6,14 @@ public class Joints : MonoBehaviour
 {
     float x = 1600f;        //disconnect amount (how hard it can bend)
 
+    //Define audio player and audio files
+    public AudioSource _AudioPlayer; //audio player
+    public AudioSource _NoLoop; //audio player without loop
+    public AudioClip blockdrop1; //block drop
+    public AudioClip blockdrop2; 
+    public AudioClip blockdrop3; 
+    public AudioClip equake; //earthquake
+    int randomSFX;
 
     bool hasJoint;
     
@@ -26,7 +34,32 @@ public class Joints : MonoBehaviour
             gameObject.AddComponent<FixedJoint>().breakTorque = x;
             gameObject.GetComponent<FixedJoint>().connectedBody = collision.rigidbody;
             hasJoint = true;
+            //Play a random sound once block is dropped
+            randomSFX = Random.Range(0, 4);
+            switch (randomSFX) {
+                case 1:
+                    _NoLoop.clip = blockdrop1;
+
+                    _NoLoop.Play();
+                    break;
+                case 2:
+                    _NoLoop.clip = blockdrop2;
+
+                    _NoLoop.Play();
+                    break;
+                case 3:
+                    _NoLoop.clip = blockdrop1;
+
+                    _NoLoop.Play();
+                    break;
+                default:
+                    _NoLoop.clip = blockdrop1;
+
+                    _NoLoop.Play();
+                    break;
+            }
             
+
         }
 
     }
