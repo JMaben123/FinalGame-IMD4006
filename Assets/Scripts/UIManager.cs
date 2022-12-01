@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 //This used to be the material and currency/point manager script.
@@ -17,7 +18,12 @@ public class UIManager : MonoBehaviour
     int blockC = 0;
     int blockD = 0;*/
 
-    
+
+    public TextMeshProUGUI woodInventory;
+    public TextMeshProUGUI brickInventory;
+    public TextMeshProUGUI steelInventory;
+
+    public GameObject placer;
 
     public GameObject BuildUI;
 
@@ -76,11 +82,18 @@ public class UIManager : MonoBehaviour
         if(globalData.currPhase == GlobalDataManager.GameState.actionPhase)
         {
             BuildUI.SetActive(false);
+            placer.SetActive(false);
         }
         else
         {
             BuildUI.SetActive(true);
+            placer.SetActive(true);
         }
+
+        woodInventory.SetText("x " + GlobalDataManager.globalDataManager.inventoryWood);
+        brickInventory.SetText("x " + GlobalDataManager.globalDataManager.inventoryBrick);
+        steelInventory.SetText("x " + GlobalDataManager.globalDataManager.inventorySteel);
+
 
         //**Pseudocode**
         //Add once game manager adds the Earthquake timer
@@ -102,7 +115,7 @@ public class UIManager : MonoBehaviour
     {
         int calcResult = points;
 
-        if (numLevels < globalData.numBlocks)
+        if (numLevels < GlobalDataManager.globalDataManager.numBlocks)
         {
             numLevels++;
             if (GlobalDataManager.globalDataManager.getGameState() == GlobalDataManager.GameState.buildPhase)

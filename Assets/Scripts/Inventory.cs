@@ -23,11 +23,8 @@ public class Inventory : MonoBehaviour
             case ResourceTypes.brick:
                 playerInventory.brickCount += numAdded;
                 break;
-            case ResourceTypes.sheetMetal:
-                playerInventory.sheetMetalCount += numAdded;
-                break;
-            case ResourceTypes.support:
-                playerInventory.supportCount += numAdded;
+            case ResourceTypes.steel:
+                playerInventory.steelCount += numAdded;
                 break;
             case ResourceTypes.wood:
                 playerInventory.woodCount += numAdded;

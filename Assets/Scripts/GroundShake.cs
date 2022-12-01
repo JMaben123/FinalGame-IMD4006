@@ -14,7 +14,7 @@ public class GroundShake : MonoBehaviour
     GlobalDataManager globalDataManager;
     //Joints joint;
     Placement place;
-    int connect;
+    int connect = 0;
 
 
     //NOTE: USE MODIFIER TO ADD UP MASS OF ALL OBJECTS ON THE FLOOR AND ADD AS A MULTIPLIER LIKE THE AMPLITUDE.
@@ -44,9 +44,9 @@ public class GroundShake : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezePosition;
 
         place = GetComponent<Placement>();
-        //shaking = GlobalDataManager.globalDataManager.getQuake();
+        shaking = GlobalDataManager.globalDataManager.getQuake();
         activeLevel = 0;
-        shaking = true;
+        //shaking = true;
         connect = place.hitCounter;   
     
         switch (lvl)
@@ -109,15 +109,19 @@ public class GroundShake : MonoBehaviour
                 break;
         }
 
+        time = GlobalDataManager.globalDataManager.phaseTimer;
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //shaking = GlobalDataManager.globalDataManager.getQuake();
+        shaking = GlobalDataManager.globalDataManager.getQuake();
         //Debug.Log("Quake is " + shaking);
 
-        //activeLevel = GlobalDataManager.globalDataManager.currLevel;
+        time = GlobalDataManager.globalDataManager.phaseTimer;
+
+        activeLevel = GlobalDataManager.globalDataManager.currLevel;
 
         lvl = (Levels)activeLevel;
         //Debug.Log(lvl);

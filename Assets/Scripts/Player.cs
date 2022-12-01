@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public struct PlayerInventory
+    {
+        public int woodCount;
+        public int steelCount;
+        public int brickCount;
+    }
+
+    PlayerInventory inventory;
 
     public KeyCode tiltLeft = KeyCode.Q;
     public KeyCode tiltRight = KeyCode.E;
@@ -20,6 +28,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerPts = GlobalDataManager.globalDataManager.playerPts;
+        inventory.woodCount = inventory.steelCount = inventory.brickCount = GlobalDataManager.globalDataManager.startResourceVal;
     }
 
     // Update is called once per frame

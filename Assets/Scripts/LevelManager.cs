@@ -6,16 +6,12 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     GlobalDataManager globalData;
-    public TextMeshProUGUI phaseText;
-    public TextMeshProUGUI levelText;
 
     // Start is called before the first frame update
     void Start()
     {
         EventSystem.Instance.OnPhaseChange += ChangePhase;
         globalData = GlobalDataManager.globalDataManager;
-        phaseText.text = "Phase: ";
-        levelText.text = "Level: ";
     }
 
     // Update is called once per frame

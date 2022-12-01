@@ -7,16 +7,14 @@ using System;
 public struct PlayerInventory
 {
     public int woodCount;
-    public int sheetMetalCount;
-    public int supportCount;
+    public int steelCount;
     public int brickCount;
 }
 
 public enum ResourceTypes
 {
     wood,
-    sheetMetal,
-    support,
+    steel,
     brick
 }
 

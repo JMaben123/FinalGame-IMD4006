@@ -4,12 +4,11 @@ using UnityEngine;
 using Cinemachine;
 
 
-
-
 public class OrbitCamera : MonoBehaviour
 {
     public float rotateSpeed = 300f;
-    int blockAmount = 1; // replace with global block count
+    GlobalDataManager gd;
+    int blockAmount;
     bool blockPlaced = false;
     float upAmount;
     float yVal;
@@ -18,16 +17,19 @@ public class OrbitCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gd = GlobalDataManager.globalDataManager;
         upAmount = 1.5f;
         yVal = gameObject.GetComponent<Transform>().position.y;
+        blockAmount = gd.numBlocks;
+        
     }
 
 
     void moveCamera()
     {
-        if(blockPlaced == true)
+        if(blockAmount > 5)
         {
-            gameObject.GetComponent<Transform>().position = new Vector3(0, yVal + upAmount, 0);
+            gameObject.GetComponent<Transform>().position = new Vector3(0, yVal + (blockAmount*upAmount), 0);
         }
     }
 
@@ -38,14 +40,19 @@ public class OrbitCamera : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftBracket))
         {
             rotateDir = 0.5f;
+            transform.Translate(Vector3.left * Time.deltaTime*rotateSpeed);
         }
         if (Input.GetKey(KeyCode.RightBracket))
         {
             rotateDir = -0.5f;
+            transform.Translate(Vector3.right* rotateSpeed * Time.deltaTime);
         }
-       
 
+        moveCamera();
 
-        transform.eulerAngles += new Vector3(0, rotateDir * rotateSpeed * Time.deltaTime, 0);
+        gameObject.transform.LookAt(GameObject.Find("CameraPivot").transform);
+
+        //transform.position += new Vector3(rotateDir * rotateSpeed * Time.deltaTime, 0);
+        
     }
 }

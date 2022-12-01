@@ -50,6 +50,11 @@ public class GlobalDataManager : MonoBehaviour
 
     public int currLevel;
 
+    public int startResourceVal;
+    public int inventoryWood;
+    public int inventoryBrick;
+    public int inventorySteel;
+
 
     private void Awake()
     {
@@ -73,32 +78,44 @@ public class GlobalDataManager : MonoBehaviour
         currPhase = GameState.buildPhase;
         currLevel = 0;
         activeBlock = AvailableBlocks.BASE_LIGHT;
+        inventoryBrick = inventorySteel = inventoryWood = startResourceVal = 50;
         //SceneManager.SetActiveScene(startScreen);
         //StartCoroutine(phaseTimerCount());
-        timerText.text = "Time Remaining In Phase: " + phaseTimer;
+        //timerText.text = "Time Remaining In Phase: " + phaseTimer;
        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+        Debug.Log("GAME MANAGER " + currPhase);
+        Debug.Log("GAME MANAGER " + quakeActive);
         //switch for game state
         if (!phaseActive)
         {
             phaseActive = true;
         }
-        EventSystem.Instance.changePhase((LevelPhase)currPhase);
+        
 
         if (currPhase == GameState.buildPhase){
             
             StopCoroutine(phaseTimerCount());
             phaseTimer = 0;
+            quakeActive = false;
         }
-        
+        if(currPhase == GameState.actionPhase)
+        {
+            quakeActive = true;
+        }
+        if(currPhase == GameState.actionPhase && phaseTimer == 0)
+        {
+            
+            StartCoroutine(phaseTimerCount());
+        }
         if(currPhase == GameState.actionPhase && phaseTimer == 60)
         {
             StopCoroutine(phaseTimerCount());
+            EventSystem.Instance.changePhase((LevelPhase)currPhase);
             phaseTimer = 0;
         }
 

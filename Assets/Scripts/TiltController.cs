@@ -24,15 +24,15 @@ public class TiltController : MonoBehaviour
     //Controls the rotations
     void rotatorInput()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        /*if (Input.GetKeyDown(KeyCode.W))
         {
             //Activate timer
             buttonTimer();
             //Rotate x positive (tilt upwards)
             rotateValX = tiltTimer * 1.05f;
-        }
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             //Activate timer
             buttonTimer();
@@ -40,15 +40,15 @@ public class TiltController : MonoBehaviour
             rotateValZ = tiltTimer * 1.05f;
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        /*if (Input.GetKeyDown(KeyCode.S))
         {
             //Activate timer
             buttonTimer();
             //Rotate x negative (tilt downwards)
             rotateValX = -tiltTimer * 1.05f;
-        }
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             //Activate timer
             buttonTimer();
@@ -117,9 +117,11 @@ public class TiltController : MonoBehaviour
     {
 
         canRotate = GlobalDataManager.globalDataManager.quakeActive;
-
+        Debug.Log(canRotate);
+        //buttonTimer();
         if (canRotate)
         {
+            
             //Activate functions
             rotatorInput();
             geoTilter();
