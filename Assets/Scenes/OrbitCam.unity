@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -643,7 +643,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.074751295, y: 0, z: 0, w: 0.9972022}
+  m_LocalRotation: {x: 0.074751295, y: -1e-45, z: 0, w: 0.9972022}
   m_LocalPosition: {x: 0, y: 7, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 1623769294}
   m_Layer: 0
   m_Name: CM vcam1
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -747,7 +747,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623769293}
-  m_LocalRotation: {x: 0.074751295, y: 0, z: 0, w: 0.9972022}
+  m_LocalRotation: {x: 0.074751295, y: -1e-45, z: -0, w: 0.9972022}
   m_LocalPosition: {x: 0, y: 7, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -801,6 +801,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 100
+  zoomAmount: 1
+  vcam: {fileID: 1623769294}
 --- !u!1 &2016677219
 GameObject:
   m_ObjectHideFlags: 0
