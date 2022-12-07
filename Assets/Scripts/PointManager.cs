@@ -87,10 +87,16 @@ public class PointManager : MonoBehaviour
         if ((wood == woodReq) && (iron == ironReq) && (stone == stoneReq) && (points == pointsReq))
         {
             //Subtract them from the reserve
-            wood = wood - woodReq;
-            steel = steel - steelReq;
-            brick = brick - brickReq;
-            points = points - pointsReq;
+            GlobalDataManager.globalDataManager.inventoryWood = wood - woodReq;
+            GlobalDataManager.globalDataManager.inventorySteel = steel - steelReq;
+            GlobalDataManager.globalDataManager.inventoryBrick = brick - brickReq;
+            GlobalDataManager.globalDataManager.playerPts = points - pointsReq;
+            //Save variables to the internal integers in PointManager.cs, so the values in here always match the one
+            //in the global data manager
+            wood = GlobalDataManager.globalDataManager.inventoryWood;
+            steel = GlobalDataManager.globalDataManager.inventorySteel;
+            brick = GlobalDataManager.globalDataManager.inventoryBrick;
+            points = GlobalDataManager.globalDataManager.playerPts;
             //Place the block
             //TODO - grab function that places the block and put it here
         }
@@ -123,11 +129,15 @@ public class PointManager : MonoBehaviour
     {
         //Initiate values
         wood = 50; //Start with 50 of each material
-        iron = 50;
-        stone = 50;
+        steel = 50;
+        brick = 50;
         points = 60; //BM: start with 60 points to spend on 
         
         GlobalDataManager.globalDataManager.playerPts = points;
+        GlobalDataManager.globalDataManager.inventoryWood = wood;
+        GlobalDataManager.globalDataManager.inventorySteel = steel;
+        GlobalDataManager.globalDataManager.inventoryBrick = brick;
+        
         globalData = GlobalDataManager.globalDataManager;
         numLevels = globalData.numBlocks;
     }
