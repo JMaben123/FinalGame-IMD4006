@@ -6,15 +6,16 @@ public class ArrowPlacementSystem : MonoBehaviour
 {
     struct Block
     {
-        //string objName;
+        public string objName;
         public GameObject model;
         public int woodCost;
         public int brickCost;
         public int steelCost;
         public int coinCost;
 
-        public Block(GameObject GO, int wc, int bc, int sc, int cc)
+        public Block(string name, GameObject GO, int wc, int bc, int sc, int cc)
         {
+            objName = name;
             model = GO;
             woodCost = wc;
             brickCost = bc;
@@ -70,17 +71,17 @@ public class ArrowPlacementSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lightBase = new Block(lightBaseGO, 5, 10, 3, 50);
-        medBase = new Block(medBaseGO, 10, 15, 8, 75);
-        heavyBase = new Block(heavyBaseGO, 20, 25, 18, 100);
+        lightBase = new Block("BASE_LIGHT", lightBaseGO, 5, 10, 3, 50);
+        medBase = new Block("BASE_NORMAL", medBaseGO, 10, 15, 8, 75);
+        heavyBase = new Block("BASE_HEAVY", heavyBaseGO, 20, 25, 18, 100);
 
-        lightMid = new Block(lightMidGO, 5, 10, 3, 50);
-        medMid = new Block(medMidGO, 10, 15, 8, 75);
-        heavyMid = new Block(heavyMidGO, 20, 25, 18, 100);
+        lightMid = new Block("MID_LIGHT", lightMidGO, 5, 10, 3, 50);
+        medMid = new Block("MID_NORMAL", medMidGO, 10, 15, 8, 75);
+        heavyMid = new Block("MID_HEAVY", heavyMidGO, 20, 25, 18, 100);
 
-        lightTop = new Block(lightTopGO, 5, 10, 3, 50);
-        medTop = new Block(medTopGO, 10, 15, 8, 75);
-        heavyTop = new Block(heavyTopGO, 20, 25, 18, 100);
+        lightTop = new Block("TOP_LIGHT", lightTopGO, 5, 10, 3, 50);
+        medTop = new Block("TOP_NORMAL", medTopGO, 10, 15, 8, 75);
+        heavyTop = new Block("TOP_HEAVY", heavyTopGO, 20, 25, 18, 100);
 
         activeBlock = lightBase;
     }
@@ -147,6 +148,8 @@ public class ArrowPlacementSystem : MonoBehaviour
             //EventSystem.Instance.blockPlaced();
             //Debug.Log("T pressed");
             moveUp();
+
+            applyCost(activeBlock.objName);
 
             GlobalDataManager.globalDataManager.numBlocks += 1;
         }
@@ -244,6 +247,70 @@ public class ArrowPlacementSystem : MonoBehaviour
         }
     }
 
+    void applyCost(string blockType)
+    {
+        //shouldn't need to account for negative values as this will only be called when the player has >= the number of required resources
+        switch (blockType)
+        {
+            case "BASE_LIGHT":
+                GlobalDataManager.globalDataManager.inventoryWood -= lightBase.woodCost;
+                GlobalDataManager.globalDataManager.inventoryBrick -= lightBase.brickCost;
+                GlobalDataManager.globalDataManager.inventorySteel -= lightBase.steelCost;
+                GlobalDataManager.globalDataManager.playerPts -= lightBase.coinCost;
+                break;
+            case "BASE_NORMAL":
+                GlobalDataManager.globalDataManager.inventoryWood -= medBase.woodCost;
+                GlobalDataManager.globalDataManager.inventoryBrick -= medBase.brickCost;
+                GlobalDataManager.globalDataManager.inventorySteel -= medBase.steelCost;
+                GlobalDataManager.globalDataManager.playerPts -= medBase.coinCost;
+                break;
+            case "BASE_HEAVY":
+                GlobalDataManager.globalDataManager.inventoryWood -= heavyBase.woodCost;
+                GlobalDataManager.globalDataManager.inventoryBrick -= heavyBase.brickCost;
+                GlobalDataManager.globalDataManager.inventorySteel -= heavyBase.steelCost;
+                GlobalDataManager.globalDataManager.playerPts -= heavyBase.coinCost;
+                break;
+            case "MID_LIGHT":
+                GlobalDataManager.globalDataManager.inventoryWood -= lightMid.woodCost;
+                GlobalDataManager.globalDataManager.inventoryBrick -= lightMid.brickCost;
+                GlobalDataManager.globalDataManager.inventorySteel -= lightMid.steelCost;
+                GlobalDataManager.globalDataManager.playerPts -= lightMid.coinCost;
+                break;
+            case "MID_NORMAL":
+                GlobalDataManager.globalDataManager.inventoryWood -= medMid.woodCost;
+                GlobalDataManager.globalDataManager.inventoryBrick -= medMid.brickCost;
+                GlobalDataManager.globalDataManager.inventorySteel -= medMid.steelCost;
+                GlobalDataManager.globalDataManager.playerPts -= medMid.coinCost;
+                break;
+            case "MID_HEAVY":
+                GlobalDataManager.globalDataManager.inventoryWood -= heavyMid.woodCost;
+                GlobalDataManager.globalDataManager.inventoryBrick -= heavyMid.brickCost;
+                GlobalDataManager.globalDataManager.inventorySteel -= heavyMid.steelCost;
+                GlobalDataManager.globalDataManager.playerPts -= heavyMid.coinCost;
+                break;
+            case "TOP_LIGHT":
+                GlobalDataManager.globalDataManager.inventoryWood -= lightTop.woodCost;
+                GlobalDataManager.globalDataManager.inventoryBrick -= lightTop.brickCost;
+                GlobalDataManager.globalDataManager.inventorySteel -= lightTop.steelCost;
+                GlobalDataManager.globalDataManager.playerPts -= lightTop.coinCost;
+                break;
+            case "TOP_NORMAL":
+                GlobalDataManager.globalDataManager.inventoryWood -= medTop.woodCost;
+                GlobalDataManager.globalDataManager.inventoryBrick -= medTop.brickCost;
+                GlobalDataManager.globalDataManager.inventorySteel -= medTop.steelCost;
+                GlobalDataManager.globalDataManager.playerPts -= medTop.coinCost;
+                break;
+            case "TOP_HEAVY":
+                GlobalDataManager.globalDataManager.inventoryWood -= heavyTop.woodCost;
+                GlobalDataManager.globalDataManager.inventoryBrick -= heavyTop.brickCost;
+                GlobalDataManager.globalDataManager.inventorySteel -= heavyTop.steelCost;
+                GlobalDataManager.globalDataManager.playerPts -= heavyTop.coinCost;
+                break;
+            default:
+                Debug.Log("BAD CHANGE: " + activeBlock.ToString());
+                break;
+        }
+    }
 
     bool canBuy(Block buyBlock)
     {
