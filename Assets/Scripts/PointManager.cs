@@ -9,12 +9,13 @@ using UnityEngine;
 
 public class PointManager : MonoBehaviour
 {
-
+    public static PointManager pointManager;
+    
     //Define variables for all different building block types
-    int woodReq = 0; //Default material variables
-    int steelReq = 0;
-    int brickReq = 0;
-    int pointsReq = 0;
+    public int woodReq = 0; //Default material variables
+    public int steelReq = 0;
+    public int brickReq = 0;
+    public int pointsReq = 0;
 
     //Define variables for the player's inventory (these values are how much the player has currently in their reserves)
     int wood = 50;
