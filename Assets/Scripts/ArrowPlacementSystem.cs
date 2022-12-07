@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArrowPlacementSystem : MonoBehaviour
 {
@@ -54,15 +55,11 @@ public class ArrowPlacementSystem : MonoBehaviour
     public GameObject medTopGO;
     public GameObject heavyTopGO;
 
-    public static ArrowPlacementSystem arrowPlacement;
+    //public GameObject costCard;
 
     public float x = 500f;                                         //Variable for the arrow force
     public int spawnHeight = 10;                                    //Variable for spawn height
 
-    //public GameObject obj1;
-    //public GameObject obj2;
-    //public GameObject obj3;
-    //public GameObject obj4;
     public GameObject placer;
     bool hasJoint;
     bool collisionPlatform = false;
@@ -314,12 +311,14 @@ public class ArrowPlacementSystem : MonoBehaviour
         //inventory compare to cost
         if ((GlobalDataManager.globalDataManager.inventoryWood >= buyBlock.woodCost) && (GlobalDataManager.globalDataManager.inventoryBrick >= buyBlock.brickCost) && (GlobalDataManager.globalDataManager.inventorySteel >= buyBlock.steelCost) && (GlobalDataManager.globalDataManager.playerPts >= buyBlock.coinCost))
         {
+            //costCard.GetComponent<Image>().color = new Color(255,255,255);
             return true;
         }
         else
         {
+            //costCard.GetComponent<Image>().color = new Color(204, 107, 107);
             return false;
-            Debug.Log("NOT ENOUGH RESOURCES");
+            //Debug.Log("NOT ENOUGH RESOURCES");
         }
     }
 
