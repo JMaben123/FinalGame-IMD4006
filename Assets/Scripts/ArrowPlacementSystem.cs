@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ArrowPlacementSystem : MonoBehaviour
 {
+    public static ArrowPlacementSystem arrowPlacementSystem;
     public float x = 500f;                                         //Variable for the arrow force
     public int spawnHeight = 10;                                    //Variable for spawn height
-
+    public bool placed;
 
     public GameObject obj1;
     public GameObject obj2;
@@ -20,12 +21,19 @@ public class ArrowPlacementSystem : MonoBehaviour
     int numOfBlocks = 0;
     public int var = 2;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
+        if (arrowPlacementSystem == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            arrowPlacementSystem = this;
+        }
+        else if (arrowPlacementSystem != this)
+        {
+            Destroy(gameObject);
+        }
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -95,12 +103,17 @@ public class ArrowPlacementSystem : MonoBehaviour
             //EventSystem.Instance.blockPlaced();
             //Debug.Log("P pressed");
             moveUp();
+            placed = true;
 
 
             GlobalDataManager.globalDataManager.numBlocks += 1;
         }
+       /* if (Input.GetKeyUp(KeyCode.T))
+        {
+            placed = false;
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.Y))
+            if (Input.GetKeyDown(KeyCode.Y))
         {
             Instantiate(obj3, new Vector3(placer.transform.position.x, placer.transform.position.y, placer.transform.position.z), Quaternion.identity);
             GlobalDataManager.globalDataManager.numBlocks += 1;
