@@ -32,6 +32,12 @@ public class PauseGame : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+    
+    //Quit game button
+    public void QuitGame()
+    {
+        SceneManager.LoadScene("StartScene"); //Exits current screen and loads the title screen
+    }
 
     private void OnDestroy()
     {
