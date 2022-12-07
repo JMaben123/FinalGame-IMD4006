@@ -9,8 +9,6 @@ using Cinemachine;
 public class OrbitCamera : MonoBehaviour
 {
     public float rotateSpeed;
-    int blockAmount = 1; // replace with global block count
-    bool blockPlaced = false;
     float zoomAmount;
     float zVal;
     public CinemachineVirtualCamera vcam;
