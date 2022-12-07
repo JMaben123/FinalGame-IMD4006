@@ -12,14 +12,14 @@ public class PointManager : MonoBehaviour
 
     //Define variables for all different building block types
     int woodReq = 0; //Default material variables
-    int ironReq = 0;
-    int stoneReq = 0;
+    int steelReq = 0;
+    int brickReq = 0;
     int pointsReq = 0;
 
     //Define variables for the player's inventory (these values are how much the player has currently in their reserves)
     int wood = 50;
-    int iron = 50;
-    int stone = 50;
+    int steel = 50;
+    int brick = 50;
     //Define points data and value
     int points = 60;
     GlobalDataManager globalData;
@@ -50,32 +50,32 @@ public class PointManager : MonoBehaviour
         {
             case 0: //Block in the first slot of the UI roulette requirements
                 woodReq = 10;
-                ironReq = 5;
-                stoneReq = 5;
+                steelReq = 5;
+                brickReq = 5;
                 pointsReq = 50;
                 break;
             case 1: //Block in the second slot
                 woodReq = 15;
-                ironReq = 5;
-                stoneReq = 10;
+                steelReq = 5;
+                brickReq = 10;
                 pointsReq = 50;
                 break;
             case 2: //Third slot, etc.
                 woodReq = 20;
-                ironReq = 10;
-                stoneReq = 15;
+                steelReq = 10;
+                brickReq = 15;
                 pointsReq = 100;
                 break;
             case 3:
                 woodReq = 20;
-                ironReq = 10;
-                stoneReq = 10;
+                steelReq = 10;
+                brickReq = 10;
                 pointsReq = 150;
                 break;
             default: //Slot 1 = default (not sure if I need this)
                 woodReq = 10;
-                ironReq = 5;
-                stoneReq = 5;
+                steelReq = 5;
+                brickReq = 5;
                 pointsReq = 50;
                 break;
         }
@@ -88,8 +88,8 @@ public class PointManager : MonoBehaviour
         {
             //Subtract them from the reserve
             wood = wood - woodReq;
-            iron = iron - ironReq;
-            stone = stone - stoneReq;
+            steel = steel - steelReq;
+            brick = brick - brickReq;
             points = points - pointsReq;
             //Place the block
             //TODO - grab function that places the block and put it here
@@ -143,6 +143,9 @@ public class PointManager : MonoBehaviour
                 if(GlobalDataManager.globalDataManager.playerPts == 0)
                 {
                     points = ptsPerLevel * numLevels;
+                    /*wood = ptsPerLevel * numLevels;
+                    steel = ptsPerLevel * numLevels;
+                    brick = ptsPerLevel * numLevels;*/
                     /*Debug.Log("pts per lvl: " + ptsPerLevel);
                     Debug.Log("num lvls" + numLevels);*/
                 }
