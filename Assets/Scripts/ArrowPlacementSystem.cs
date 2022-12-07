@@ -38,6 +38,10 @@ public class ArrowPlacementSystem : MonoBehaviour
 
     Block activeBlock;
 
+    Block[] availBlocks;
+
+    int currentBlockIndex;
+
     public GameObject lightBaseGO;
     public GameObject medBaseGO;
     public GameObject heavyBaseGO;
@@ -82,12 +86,17 @@ public class ArrowPlacementSystem : MonoBehaviour
         medTop = new Block("TOP_NORMAL", medTopGO, 10, 15, 8, 75);
         heavyTop = new Block("TOP_HEAVY", heavyTopGO, 20, 25, 18, 100);
 
-        activeBlock = lightBase;
+        availBlocks = new Block[] {lightBase, medBase, heavyBase, lightMid, medMid, heavyMid, lightTop, medTop, heavyTop};
+
+        currentBlockIndex = 0;
+        activeBlock = availBlocks[currentBlockIndex];
     }
 
     // Update is called once per frame
     void Update()
     {
+        changeActiveBlock();
+
         setActiveCost();
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -139,7 +148,6 @@ public class ArrowPlacementSystem : MonoBehaviour
 
     public void placeBlock()                                            //Arrow Placement System
     {
-
         if (canBuy(activeBlock))
         {
             Instantiate(activeBlock.model, new Vector3(placer.transform.position.x, placer.transform.position.y, placer.transform.position.z), Quaternion.identity);
@@ -160,6 +168,35 @@ public class ArrowPlacementSystem : MonoBehaviour
         GlobalDataManager.globalDataManager.activeBrickCost = activeBlock.brickCost;
         GlobalDataManager.globalDataManager.activeSteelCost = activeBlock.steelCost;
         GlobalDataManager.globalDataManager.activeCoinCost = activeBlock.coinCost;
+    }
+
+    void changeActiveBlock()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if(currentBlockIndex+1 == availBlocks.Length)
+            {
+                currentBlockIndex = 0;
+            }
+            else
+            {
+                currentBlockIndex++;
+            }            
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (currentBlockIndex == 0)
+            {
+                currentBlockIndex = availBlocks.Length - 1;
+            }
+            else
+            {
+                currentBlockIndex--;
+            }            
+        }
+        activeBlock = availBlocks[currentBlockIndex];
+        GlobalDataManager.globalDataManager.setCurrentBlock(activeBlock.objName);
+        Debug.Log(activeBlock.objName);
     }
 
     public void setActiveBlock()

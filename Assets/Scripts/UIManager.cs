@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        points = 60; //BM: start with 60 points to spend on 
+        points = 1500; //BM: start with 60 points to spend on 
         
         GlobalDataManager.globalDataManager.playerPts = points;
         globalData = GlobalDataManager.globalDataManager;
