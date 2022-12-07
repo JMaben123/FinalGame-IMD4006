@@ -5,13 +5,11 @@ using UnityEngine;
 public class Placement : MonoBehaviour
 {
 
-    public GameObject obj1;
-    public GameObject obj2;
-    public GameObject obj3;
-    public GameObject obj4;
+    
+
     public GameObject platform;
     bool hasJoint;
-    bool collisionPlatform = false;
+    //bool collisionPlatform = false;
     float y = 10f + 10;                          //the start height of a spawned objects
     public int blockCount;
     void OnCollisionEnter(Collision collision)
@@ -33,30 +31,44 @@ public class Placement : MonoBehaviour
     void Start()
     {
         blockCount = 0;
+
+        
+
+        //set available blocks
+        //availableBlocks[0] = lightBase;
+        //availableBlocks[1] = medBase;
+        //availableBlocks[2] = heavyBase;
+
+        //availableBlocks[3] = lightMid;
+        //availableBlocks[4] = medMid;
+        //availableBlocks[5] = heavyMid;
+
+        //availableBlocks[6] = lightTop;
+        //availableBlocks[7] = medTop;
+        //availableBlocks[8] = heavyTop;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        placeBlock();
+        //setActiveBlock();
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("place block");
+            placeBlock();
+        }
+        
     }
 
     public void placeBlock()
     {
         //BM: move block placement commands here?
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            //
-            Instantiate(obj1, new Vector3(platform.transform.position.x, platform.transform.position.y + y, platform.transform.position.z), Quaternion.identity);
-            GlobalDataManager.globalDataManager.numBlocks += 1;
-            Debug.Log(GlobalDataManager.globalDataManager.numBlocks);
-            //EventSystem.Instance.blockPlaced();
-            //Debug.Log("T pressed");
-            blockCount += 1;
-        }
+       
+        
 
-        if (Input.GetKeyDown(KeyCode.Y))
+        /*if (Input.GetKeyDown(KeyCode.Y))
         {
             Instantiate(obj2, new Vector3(platform.transform.position.x, platform.transform.position.y + y, platform.transform.position.z), Quaternion.identity);
             //Debug.Log("Y pressed");
@@ -78,9 +90,11 @@ public class Placement : MonoBehaviour
             //Debug.Log("I pressed");
             GlobalDataManager.globalDataManager.numBlocks += 1;
             blockCount += 1;
-        }
+        }*/
 
         
     }
+
+    
 
 }

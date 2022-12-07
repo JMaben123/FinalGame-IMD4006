@@ -37,7 +37,7 @@ public class GlobalDataManager : MonoBehaviour
     public Scene mainGame;
     public Scene endGame;
 
-    public int playerPts;
+    
 
     public bool quakeActive;
 
@@ -54,6 +54,7 @@ public class GlobalDataManager : MonoBehaviour
     public int inventoryWood;
     public int inventoryBrick;
     public int inventorySteel;
+    public int playerPts;
 
 
     private void Awake()
@@ -88,8 +89,8 @@ public class GlobalDataManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("GAME MANAGER " + currPhase);
-        Debug.Log("GAME MANAGER " + quakeActive);
+        //Debug.Log("GAME MANAGER " + currPhase);
+        //Debug.Log("GAME MANAGER " + quakeActive);
         //switch for game state
         if (!phaseActive)
         {
@@ -187,9 +188,46 @@ public class GlobalDataManager : MonoBehaviour
         return currLevel;
     }
 
-    public AvailableBlocks getCurrentBlock()
+    public string getCurrentBlock()
     {
-        return activeBlock;
+        return activeBlock.ToString();
+    }
+
+    public void setCurrentBlock(string newActiveBlock)
+    {
+        switch (newActiveBlock)
+        {
+            case "BASE_LIGHT":
+                activeBlock = AvailableBlocks.BASE_LIGHT;
+                break;
+            case "BASE_NORMAL":
+                activeBlock = AvailableBlocks.BASE_NORMAL;
+                break;
+            case "BASE_HEAVY":
+                activeBlock = AvailableBlocks.BASE_HEAVY;
+                break;
+            case "MID_LIGHT":
+                activeBlock = AvailableBlocks.MID_LIGHT;
+                break;
+            case "MID_NORMAL":
+                activeBlock = AvailableBlocks.MID_NORMAL;
+                break;
+            case "MID_HEAVY":
+                activeBlock = AvailableBlocks.MID_HEAVY;
+                break;
+            case "TOP_LIGHT":
+                activeBlock = AvailableBlocks.TOP_LIGHT;
+                break;
+            case "TOP_NORMAL":
+                activeBlock = AvailableBlocks.TOP_NORMAL;
+                break;
+            case "TOP_HEAVY":
+                activeBlock = AvailableBlocks.TOP_HEAVY;
+                break;
+            default:
+                Debug.Log("CHANGE FAILED BLOCK REMAINS: " + activeBlock.ToString());
+                break;
+        }
     }
 
 

@@ -117,7 +117,7 @@ public class TiltController : MonoBehaviour
     {
 
         canRotate = GlobalDataManager.globalDataManager.quakeActive;
-        Debug.Log(canRotate);
+        //Debug.Log(canRotate);
         //buttonTimer();
         if (canRotate)
         {
