@@ -13,7 +13,7 @@ public class Placement : MonoBehaviour
     bool hasJoint;
     bool collisionPlatform = false;
     float y = 10f + 10;                          //the start height of a spawned objects
-    public int hitCounter;
+    public int blockCount;
     void OnCollisionEnter(Collision collision)
     {
         //platform = GameObject.Find("platform");
@@ -32,7 +32,7 @@ public class Placement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hitCounter = 0;
+        blockCount = 0;
     }
 
     // Update is called once per frame
@@ -53,7 +53,7 @@ public class Placement : MonoBehaviour
             Debug.Log(GlobalDataManager.globalDataManager.numBlocks);
             //EventSystem.Instance.blockPlaced();
             //Debug.Log("T pressed");
-            hitCounter += 1;
+            blockCount += 1;
         }
 
         if (Input.GetKeyDown(KeyCode.Y))
@@ -61,7 +61,7 @@ public class Placement : MonoBehaviour
             Instantiate(obj2, new Vector3(platform.transform.position.x, platform.transform.position.y + y, platform.transform.position.z), Quaternion.identity);
             //Debug.Log("Y pressed");
             GlobalDataManager.globalDataManager.numBlocks += 1;
-            hitCounter += 1;
+            blockCount += 1;
         }
 
         if (Input.GetKeyDown(KeyCode.U))
@@ -69,7 +69,7 @@ public class Placement : MonoBehaviour
             Instantiate(obj3, new Vector3(platform.transform.position.x, platform.transform.position.y + y, platform.transform.position.z), Quaternion.identity);
             //Debug.Log("U pressed");
             GlobalDataManager.globalDataManager.numBlocks += 1;
-            hitCounter += 1;
+            blockCount += 1;
         }
 
         if (Input.GetKeyDown(KeyCode.I))
@@ -77,7 +77,7 @@ public class Placement : MonoBehaviour
             Instantiate(obj4, new Vector3(platform.transform.position.x, platform.transform.position.y + y, platform.transform.position.z), Quaternion.identity);
             //Debug.Log("I pressed");
             GlobalDataManager.globalDataManager.numBlocks += 1;
-            hitCounter += 1;
+            blockCount += 1;
         }
 
         

@@ -15,7 +15,7 @@ public class OrbitCamera : MonoBehaviour
     float zVal;
     public CinemachineVirtualCamera vcam;
     CinemachineTransposer transposer;
-
+    Placement place;
 
 
     // Start is called before the first frame update
@@ -24,6 +24,9 @@ public class OrbitCamera : MonoBehaviour
         //zoomAmount = 0.25f;
         transposer = vcam.AddCinemachineComponent<CinemachineTransposer>();
         transposer.m_FollowOffset = new Vector3(0f, 7f, -13f);
+        place = GetComponent<Placement>();
+        zoomAmount = place.blockCount;
+        print("block count");
     }
 
 

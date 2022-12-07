@@ -47,7 +47,7 @@ public class GroundShake : MonoBehaviour
         shaking = GlobalDataManager.globalDataManager.getQuake();
         activeLevel = 0;
         //shaking = true;
-        connect = place.hitCounter;   
+        connect = place.blockCount;   
     
         switch (lvl)
         {
@@ -142,7 +142,7 @@ public class GroundShake : MonoBehaviour
 
 
 
-    IEnumerator EarthquakeGenerator(float frequency, float amplitude, int hit)
+    IEnumerator EarthquakeGenerator(float frequency, float amplitude, int count)
     {
         while(true)
         {
@@ -154,7 +154,7 @@ public class GroundShake : MonoBehaviour
             for (int i = 0; i < amplitudeArray.Length; i++)
             {
                 int val = Random.Range(0, amplitudeArray.Length);
-                float force = amplitudeArray[val] * amplitude * hit;
+                float force = amplitudeArray[val] * amplitude * count;
                 //float force = amplitudeArray[i] * amplitude * sign;
                 //float force = (Random.Range(0, amplitudeArray.Length)) * amplitude;
                 //rb.AddForce(force, 0, force, ForceMode.VelocityChange);
