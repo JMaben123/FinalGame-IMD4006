@@ -12,7 +12,6 @@ public class GroundShake : MonoBehaviour
     float amplitude;
     int activeLevel;
     GlobalDataManager globalDataManager;
-    //Joints joint;
     Placement place;
     int connect = 0;
 
@@ -46,8 +45,9 @@ public class GroundShake : MonoBehaviour
         place = GetComponent<Placement>();
         shaking = GlobalDataManager.globalDataManager.getQuake();
         activeLevel = 0;
-        //shaking = true;
-        connect = place.blockCount;   
+        shaking = true;
+        connect = GlobalDataManager.globalDataManager.numBlocks;
+        print("block count earthquake: " + connect);
     
         switch (lvl)
         {

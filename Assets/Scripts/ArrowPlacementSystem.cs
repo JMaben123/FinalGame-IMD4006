@@ -67,9 +67,17 @@ public class ArrowPlacementSystem : MonoBehaviour
 
     int numOfBlocks = 0;
     public int var = 2;
+    
+    //Define audio player and audio files
+    public AudioSource _AudioPlayer; //audio player
+    public AudioSource _NoLoop; //audio player without loop
+    public AudioClip blockdrop1; //block drop
+    public AudioClip blockdrop2; 
+    public AudioClip blockdrop3; 
+    public AudioClip equake; //earthquake
+    int randomSFX;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         lightBase = new Block("BASE_LIGHT", lightBaseGO, 5, 10, 3, 50);
         medBase = new Block("BASE_NORMAL", medBaseGO, 10, 15, 8, 75);
@@ -88,7 +96,17 @@ public class ArrowPlacementSystem : MonoBehaviour
         currentBlockIndex = 0;
         activeBlock = availBlocks[currentBlockIndex];
     }
+        if (arrowPlacementSystem == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            arrowPlacementSystem = this;
+        }
+        else if (arrowPlacementSystem != this)
+        {
+            Destroy(gameObject);
+        }
 
+    }
     // Update is called once per frame
     void Update()
     {
