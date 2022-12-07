@@ -22,6 +22,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI woodInventory;
     public TextMeshProUGUI brickInventory;
     public TextMeshProUGUI steelInventory;
+    
+    public TextMeshProUGUI woodCost;
+    public TextMeshProUGUI brickCost;
+    public TextMeshProUGUI steelCost;
+    public TextMeshProUGUI pointCost;
 
     public GameObject placer;
 
@@ -93,6 +98,11 @@ public class UIManager : MonoBehaviour
         woodInventory.SetText("x " + GlobalDataManager.globalDataManager.inventoryWood);
         brickInventory.SetText("x " + GlobalDataManager.globalDataManager.inventoryBrick);
         steelInventory.SetText("x " + GlobalDataManager.globalDataManager.inventorySteel);
+        
+        woodCost.SetText("x " + PointManager.pointManager.woodReq);
+        brickCost.SetText("x " + PointManager.pointManager.steelReq);
+        steelCost.SetText("x " + PointManager.pointManager.brickReq);
+        pointCost.SetText("x " + PointManager.pointManager.pointsReq);
 
 
         //**Pseudocode**
