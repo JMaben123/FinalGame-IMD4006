@@ -32,6 +32,10 @@ public class UIManager : MonoBehaviour
 
     public GameObject BuildUI;
 
+    public GameObject activeBlockUI;
+
+    public Mesh lightBaseMesh;
+
     //BM points values
     int numLevels = 0;
     int ptsPerLevel = 10; //BM: pts per level built
@@ -109,6 +113,38 @@ public class UIManager : MonoBehaviour
         brickCostText.SetText("x " + GlobalDataManager.globalDataManager.activeBrickCost);
         steelCostText.SetText("x " + GlobalDataManager.globalDataManager.activeSteelCost);
         coinCostText.SetText("x " + GlobalDataManager.globalDataManager.activeCoinCost);
+
+        string activeBlockName = GlobalDataManager.globalDataManager.getCurrentBlock();
+
+        //////////////////////////////////////////////////////////////////////
+        if (activeBlockName == "BASE_LIGHT") activeBlockUI.transform.GetChild(0).gameObject.SetActive(true);
+        else activeBlockUI.transform.GetChild(0).gameObject.SetActive(false);
+
+        if (activeBlockName == "BASE_NORMAL") activeBlockUI.transform.GetChild(1).gameObject.SetActive(true);
+        else activeBlockUI.transform.GetChild(1).gameObject.SetActive(false);
+
+        if (activeBlockName == "BASE_HEAVY") activeBlockUI.transform.GetChild(2).gameObject.SetActive(true);
+        else activeBlockUI.transform.GetChild(2).gameObject.SetActive(false);
+
+        //////////////////////////////////////////////////////////////////////
+        if (activeBlockName == "MID_LIGHT") activeBlockUI.transform.GetChild(3).gameObject.SetActive(true);
+        else activeBlockUI.transform.GetChild(3).gameObject.SetActive(false);
+
+        if (activeBlockName == "MID_NORMAL") activeBlockUI.transform.GetChild(4).gameObject.SetActive(true);
+        else activeBlockUI.transform.GetChild(4).gameObject.SetActive(false);
+
+        if (activeBlockName == "MID_HEAVY") activeBlockUI.transform.GetChild(5).gameObject.SetActive(true);
+        else activeBlockUI.transform.GetChild(5).gameObject.SetActive(false);
+
+        //////////////////////////////////////////////////////////////////////
+        if (activeBlockName == "TOP_LIGHT") activeBlockUI.transform.GetChild(6).gameObject.SetActive(true);
+        else activeBlockUI.transform.GetChild(6).gameObject.SetActive(false);
+
+        if (activeBlockName == "TOP_NORMAL") activeBlockUI.transform.GetChild(7).gameObject.SetActive(true);
+        else activeBlockUI.transform.GetChild(7).gameObject.SetActive(false);
+
+        if (activeBlockName == "TOP_HEAVY") activeBlockUI.transform.GetChild(8).gameObject.SetActive(true);
+        else activeBlockUI.transform.GetChild(8).gameObject.SetActive(false);
 
 
         //**Pseudocode**

@@ -196,7 +196,7 @@ public class ArrowPlacementSystem : MonoBehaviour
         }
         activeBlock = availBlocks[currentBlockIndex];
         GlobalDataManager.globalDataManager.setCurrentBlock(activeBlock.objName);
-        Debug.Log(activeBlock.objName);
+        //Debug.Log(activeBlock.objName);
     }
 
     public void setActiveBlock()
