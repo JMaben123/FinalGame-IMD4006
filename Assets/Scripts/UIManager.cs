@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI brickCost;
     public TextMeshProUGUI steelCost;
     public TextMeshProUGUI pointCost;
+    
+    //TODO - Add ImageSource, and image icons into sprites, and then make this script read it
 
     public GameObject placer;
 
@@ -103,6 +105,16 @@ public class UIManager : MonoBehaviour
         brickCost.SetText("x " + PointManager.pointManager.steelReq);
         steelCost.SetText("x " + PointManager.pointManager.brickReq);
         pointCost.SetText("x " + PointManager.pointManager.pointsReq);
+        
+        //Update UI ID from the point manager
+        if (KeyPressDown.R)
+        {
+            PointManager.pointManager.uiID = PointManager.pointManager.uiID + 1; //Increase the UI ID checker by 1
+        }
+        else if (KeyPressDown.R && PointManager.pointManager.uiID > 3)
+        {
+            PointManager.pointManager.uiID = 0; //Reset ID back to 0
+        }
 
 
         //**Pseudocode**
