@@ -22,6 +22,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI woodInventory;
     public TextMeshProUGUI brickInventory;
     public TextMeshProUGUI steelInventory;
+    
+    public TextMeshProUGUI woodCostText;
+    public TextMeshProUGUI brickCostText;
+    public TextMeshProUGUI steelCostText;
+    public TextMeshProUGUI coinCostText;
 
     public GameObject placer;
 
@@ -43,8 +48,12 @@ public class UIManager : MonoBehaviour
     bool canMoveObjects = true; //True by default cause the player should be on build phase. Sets to false once action phase begins.
 
     //Define points value
-    int points = 60;
+    int points = 150;
     GlobalDataManager globalData;
+
+    
+
+
 
     //This function controls the checker, which tells the game how well the player has done in their defense.
     //This is done by checking the Y value of the "flag" object, which is how high the flag is from touching the ground once the earthquake ends.
@@ -75,9 +84,9 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        points = calculatePoints();
-
+        
+        //points = calculatePoints();
+        points = GlobalDataManager.globalDataManager.playerPts;
         //control display for phase specific UI elements
         if(globalData.currPhase == GlobalDataManager.GameState.actionPhase)
         {
@@ -93,6 +102,13 @@ public class UIManager : MonoBehaviour
         woodInventory.SetText("x " + GlobalDataManager.globalDataManager.inventoryWood);
         brickInventory.SetText("x " + GlobalDataManager.globalDataManager.inventoryBrick);
         steelInventory.SetText("x " + GlobalDataManager.globalDataManager.inventorySteel);
+        //pointsText.SetText("" + GlobalDataManager.globalDataManager.playerPts);
+
+        
+        woodCostText.SetText("x " + GlobalDataManager.globalDataManager.activeWoodCost);        
+        brickCostText.SetText("x " + GlobalDataManager.globalDataManager.activeBrickCost);
+        steelCostText.SetText("x " + GlobalDataManager.globalDataManager.activeSteelCost);
+        coinCostText.SetText("x " + GlobalDataManager.globalDataManager.activeCoinCost);
 
 
         //**Pseudocode**
@@ -106,7 +122,7 @@ public class UIManager : MonoBehaviour
         hasPointsSent = true;
         //}}
 
-        GlobalDataManager.globalDataManager.playerPts = points;
+        //GlobalDataManager.globalDataManager.playerPts = points;
         EventSystem.Instance.changePoints(points);
         //Debug.Log(points);
     }

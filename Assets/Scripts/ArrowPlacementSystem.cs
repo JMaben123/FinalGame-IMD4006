@@ -36,8 +36,6 @@ public class ArrowPlacementSystem : MonoBehaviour
     Block medTop;
     Block heavyTop;
 
-    //Block[] availableBlocks;
-
     Block activeBlock;
 
     public GameObject lightBaseGO;
@@ -52,6 +50,7 @@ public class ArrowPlacementSystem : MonoBehaviour
     public GameObject medTopGO;
     public GameObject heavyTopGO;
 
+    public static ArrowPlacementSystem arrowPlacement;
 
     public float x = 500f;                                         //Variable for the arrow force
     public int spawnHeight = 10;                                    //Variable for spawn height
@@ -89,6 +88,8 @@ public class ArrowPlacementSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        setActiveCost();
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             placeBlock();
@@ -150,65 +151,18 @@ public class ArrowPlacementSystem : MonoBehaviour
             moveUp();
 
             applyCost(activeBlock.objName);
-
-            GlobalDataManager.globalDataManager.numBlocks += 1;
         }
-
-        /*if (Input.GetKeyDown(KeyCode.I))
-        {
-            Instantiate(obj1, new Vector3(placer.transform.position.x, placer.transform.position.y, placer.transform.position.z), Quaternion.identity);
-            GlobalDataManager.globalDataManager.numBlocks += 1;
-            Debug.Log(GlobalDataManager.globalDataManager.numBlocks);
-            //EventSystem.Instance.blockPlaced();
-            //Debug.Log("P pressed");
-            moveUp();
-
-
-            GlobalDataManager.globalDataManager.numBlocks += 1;
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Instantiate(obj2, new Vector3(placer.transform.position.x, placer.transform.position.y, placer.transform.position.z), Quaternion.identity);
-            GlobalDataManager.globalDataManager.numBlocks += 1;
-            Debug.Log(GlobalDataManager.globalDataManager.numBlocks);
-            //EventSystem.Instance.blockPlaced();
-            //Debug.Log("P pressed");
-            moveUp();
-
-
-            GlobalDataManager.globalDataManager.numBlocks += 1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Instantiate(obj3, new Vector3(placer.transform.position.x, placer.transform.position.y, placer.transform.position.z), Quaternion.identity);
-            GlobalDataManager.globalDataManager.numBlocks += 1;
-            Debug.Log(GlobalDataManager.globalDataManager.numBlocks);
-            //EventSystem.Instance.blockPlaced();
-            //Debug.Log("P pressed");
-            moveUp();
-
-
-            GlobalDataManager.globalDataManager.numBlocks += 1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Instantiate(obj4, new Vector3(placer.transform.position.x, placer.transform.position.y, placer.transform.position.z), Quaternion.identity);
-            GlobalDataManager.globalDataManager.numBlocks += 1;
-            Debug.Log(GlobalDataManager.globalDataManager.numBlocks);
-            //EventSystem.Instance.blockPlaced();
-            //Debug.Log("P pressed");
-            moveUp();
-
-
-            GlobalDataManager.globalDataManager.numBlocks += 1;
-        }*/
-
-
     }
 
-    void setActiveBlock()
+    void setActiveCost()
+    {
+        GlobalDataManager.globalDataManager.activeWoodCost = activeBlock.woodCost;
+        GlobalDataManager.globalDataManager.activeBrickCost = activeBlock.brickCost;
+        GlobalDataManager.globalDataManager.activeSteelCost = activeBlock.steelCost;
+        GlobalDataManager.globalDataManager.activeCoinCost = activeBlock.coinCost;
+    }
+
+    public void setActiveBlock()
     {
         string currBlock = GlobalDataManager.globalDataManager.getCurrentBlock();
 
@@ -245,6 +199,12 @@ public class ArrowPlacementSystem : MonoBehaviour
                 Debug.Log("BAD CHANGE: " + activeBlock.ToString());
                 break;
         }
+    }
+
+    public int[] getBlockCosts()
+    {
+        int[] blockCosts = { activeBlock.woodCost, activeBlock.brickCost, activeBlock.steelCost, activeBlock.coinCost };
+        return blockCosts;
     }
 
     void applyCost(string blockType)

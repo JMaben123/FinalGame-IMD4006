@@ -31,22 +31,6 @@ public class Placement : MonoBehaviour
     void Start()
     {
         blockCount = 0;
-
-        
-
-        //set available blocks
-        //availableBlocks[0] = lightBase;
-        //availableBlocks[1] = medBase;
-        //availableBlocks[2] = heavyBase;
-
-        //availableBlocks[3] = lightMid;
-        //availableBlocks[4] = medMid;
-        //availableBlocks[5] = heavyMid;
-
-        //availableBlocks[6] = lightTop;
-        //availableBlocks[7] = medTop;
-        //availableBlocks[8] = heavyTop;
-        
     }
 
     // Update is called once per frame

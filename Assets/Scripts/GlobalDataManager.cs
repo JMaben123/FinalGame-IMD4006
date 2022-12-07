@@ -37,7 +37,10 @@ public class GlobalDataManager : MonoBehaviour
     public Scene mainGame;
     public Scene endGame;
 
-    
+    public int activeWoodCost = 0;
+    public int activeBrickCost = 0;
+    public int activeSteelCost = 0;
+    public int activeCoinCost = 0;
 
     public bool quakeActive;
 
