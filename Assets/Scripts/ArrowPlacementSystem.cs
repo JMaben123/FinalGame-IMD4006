@@ -96,17 +96,7 @@ public class ArrowPlacementSystem : MonoBehaviour
         currentBlockIndex = 0;
         activeBlock = availBlocks[currentBlockIndex];
     }
-        if (arrowPlacementSystem == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            arrowPlacementSystem = this;
-        }
-        else if (arrowPlacementSystem != this)
-        {
-            Destroy(gameObject);
-        }
-
-    }
+        
     // Update is called once per frame
     void Update()
     {
