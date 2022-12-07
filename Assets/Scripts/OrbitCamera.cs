@@ -43,7 +43,7 @@ public class OrbitCamera : MonoBehaviour
         print("added block");
         print(zVal);
         arrow = false;
-        ArrowPlacementSystem.arrowPlacementSystem.placed = false;
+        ///ArrowPlacementSystem.arrowPlacementSystem.placed = false;
 
 
     }
@@ -51,7 +51,7 @@ public class OrbitCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        arrow = ArrowPlacementSystem.arrowPlacementSystem.placed;
+        //arrow = ArrowPlacementSystem.arrowPlacementSystem.placed;
 
         zoomAmount = GlobalDataManager.globalDataManager.numBlocks;
         print("arrow: " + arrow);
