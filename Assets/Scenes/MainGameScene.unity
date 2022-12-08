@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1278,6 +1278,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &245708118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245708115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9a4a6ac5b6daa4d9918650fc12976f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 100
+  vcam: {fileID: 245708116}
+  lookAtObject: {fileID: 1726524978}
 --- !u!1 &272421877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,7 +1916,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.57081753, y: 0.15211801}
   m_AnchorMax: {x: 0.86500007, y: 0.29029027}
-  m_AnchoredPosition: {x: -9.950012, y: 0.40009308}
+  m_AnchoredPosition: {x: -9.950012, y: 0.40008545}
   m_SizeDelta: {x: -22, y: -1.0000038}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &390467675
@@ -1951,7 +1966,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52.05
+  m_fontSize: 62.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2529,7 +2544,14 @@ MonoBehaviour:
   x: 500
   spawnHeight: 10
   placer: {fileID: 560178338}
+  placed: 0
   var: 2
+  _AudioPlayer: {fileID: 0}
+  _NoLoop: {fileID: 0}
+  blockdrop1: {fileID: 0}
+  blockdrop2: {fileID: 0}
+  blockdrop3: {fileID: 0}
+  equake: {fileID: 0}
 --- !u!54 &560178344
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4195,7 +4217,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50.9
+  m_fontSize: 61.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8903,7 +8925,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.25
+  m_fontSize: 56.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10111,7 +10133,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52.85
+  m_fontSize: 63.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10436,7 +10458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5747069127676410144, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: lvl
-      value: 11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5747069127676410144, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: m_Enabled
@@ -10464,7 +10486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5747069127676410151, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: speedController
-      value: 0.75
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6561011176995049597, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: m_RootOrder

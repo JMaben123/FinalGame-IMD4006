@@ -12,8 +12,7 @@ public class GroundShake : MonoBehaviour
     float amplitude;
     int activeLevel;
     GlobalDataManager globalDataManager;
-    Placement place;
-    int connect = 0;
+    int connect;
 
 
     //NOTE: USE MODIFIER TO ADD UP MASS OF ALL OBJECTS ON THE FLOOR AND ADD AS A MULTIPLIER LIKE THE AMPLITUDE.
@@ -41,14 +40,9 @@ public class GroundShake : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezePosition;
-
-        place = GetComponent<Placement>();
         shaking = GlobalDataManager.globalDataManager.getQuake();
         activeLevel = 0;
-        shaking = true;
-        connect = GlobalDataManager.globalDataManager.numBlocks;
-        print("block count earthquake: " + connect);
-    
+
         switch (lvl)
         {
             case Levels.L0:
@@ -111,15 +105,26 @@ public class GroundShake : MonoBehaviour
 
         time = GlobalDataManager.globalDataManager.phaseTimer;
 
+       /* if (globalDataManager.quakeActive == true)
+        {
+        }
+        if(globalDataManager.quakeActive == false)
+        {
+            globalDataManager.quakeActive = true;
+        }*/
+
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        connect = GlobalDataManager.globalDataManager.numBlocks;
+        print("block count earthquake: " + connect);
         shaking = GlobalDataManager.globalDataManager.getQuake();
         //Debug.Log("Quake is " + shaking);
 
-        time = GlobalDataManager.globalDataManager.phaseTimer;
+        time = GlobalDataManager.globalDataManager.phaseTimer; 
 
         activeLevel = GlobalDataManager.globalDataManager.currLevel;
 
@@ -144,7 +149,8 @@ public class GroundShake : MonoBehaviour
 
     IEnumerator EarthquakeGenerator(float frequency, float amplitude, int count)
     {
-        while(true)
+        print("start of earthquake");
+        while (true)
         {
             float[] amplitudeArray = { 0f,0.5f, 1,0.5f, 0f,-0.5f, -1,-0.5f };
             //float[] amplitudeArray = { 0f, 0.05f, 0.1f, 0.05f, 0f, -0.05f, -0.1f, -0.05f };
