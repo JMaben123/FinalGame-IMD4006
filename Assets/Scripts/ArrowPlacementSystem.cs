@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ArrowPlacementSystem : MonoBehaviour
 {
+    public static ArrowPlacementSystem arrowPlacementSystem;
     struct Block
     {
         public string objName;
@@ -64,7 +65,7 @@ public class ArrowPlacementSystem : MonoBehaviour
     bool hasJoint;
     bool collisionPlatform = false;
     float y = 10f + 10;
-
+    public bool placed;
     int numOfBlocks = 0;
     public int var = 2;
     
@@ -95,6 +96,16 @@ public class ArrowPlacementSystem : MonoBehaviour
 
         currentBlockIndex = 0;
         activeBlock = availBlocks[currentBlockIndex];
+
+        if (arrowPlacementSystem == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            arrowPlacementSystem = this;
+        }
+        else if (arrowPlacementSystem != this)
+        {
+            Destroy(gameObject);
+        }
     }
         
     // Update is called once per frame
@@ -107,6 +118,7 @@ public class ArrowPlacementSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             placeBlock();
+            placed = true;
         }
 
         if (Input.GetKeyDown(KeyCode.W))                                //Arrow Movement System
