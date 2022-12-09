@@ -26,7 +26,7 @@ public class OrbitCamera : MonoBehaviour
         //transposer = vcam.GetComponent<CinemachineTransposer>();
         transposer.m_FollowOffset = new Vector3(0f, 7f, -13f);
         
-        print("block count: " + zoomAmount);
+        //print("block count: " + zoomAmount);
         
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GroundShake : MonoBehaviour
 {
     Rigidbody rb;
-    bool shaking;
+    //bool shaking;
     public float time;
     public float bounding;
     float frequency;
@@ -40,13 +40,31 @@ public class GroundShake : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezePosition;
-        shaking = GlobalDataManager.globalDataManager.getQuake();
+        //shaking = GlobalDataManager.globalDataManager.getQuake();
         activeLevel = 0;
+
+        time = GlobalDataManager.globalDataManager.phaseTimer;
+
+       /* if (globalDataManager.quakeActive == true)
+        {
+        }
+        if(globalDataManager.quakeActive == false)
+        {
+            globalDataManager.quakeActive = true;
+        }*/
+
+
+    }
+
+    // Update is called once per frame
+
+    void earthQuake()
+    {
 
         switch (lvl)
         {
             case Levels.L0:
-                StartCoroutine(EarthquakeGenerator(0.5f, 10f, connect));
+                StartCoroutine(EarthquakeGenerator(0.5f, 1f, connect));
                 bounding = 1f;
                 break;
             case Levels.L1:
@@ -103,45 +121,37 @@ public class GroundShake : MonoBehaviour
                 break;
         }
 
-        time = GlobalDataManager.globalDataManager.phaseTimer;
-
-       /* if (globalDataManager.quakeActive == true)
-        {
-        }
-        if(globalDataManager.quakeActive == false)
-        {
-            globalDataManager.quakeActive = true;
-        }*/
-
-
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         connect = GlobalDataManager.globalDataManager.numBlocks;
         //print("block count earthquake: " + connect);
-        shaking = GlobalDataManager.globalDataManager.getQuake();
+        //shaking = GlobalDataManager.globalDataManager.getQuake();
         //Debug.Log("Quake is " + shaking);
 
         time = GlobalDataManager.globalDataManager.phaseTimer; 
 
         activeLevel = GlobalDataManager.globalDataManager.currLevel;
-        print("update check");
+        //print("update check");
         lvl = (Levels)activeLevel;
         //Debug.Log(lvl);
 
 
-        if (shaking == true)
+        if (GlobalDataManager.globalDataManager.getQuake() == true)
         {
-            //print("working");
             rb.isKinematic = false;
+            print("running");
+            earthQuake();
         }
-        else
+        if(GlobalDataManager.globalDataManager.getQuake() == false)
         {
             rb.isKinematic = true;
             StopCoroutine(EarthquakeGenerator(frequency, amplitude, 0));
-            rb.transform.position = Vector3.Lerp(rb.transform.position, new Vector3(0, 0.25f, 0), time * Time.deltaTime);
+            rb.transform.rotation = Quaternion.Lerp(rb.transform.rotation, Quaternion.Euler(0f, rb.transform.rotation.y, 0f), 1f*Time.deltaTime);
+            //rb.transform.rotation = Quaternion.Euler(0f, rb.transform.rotation.y, 0f);
+            //Quaternion.Euler(0f, rb.transform.rotation.y, 0f);
         }
         //rb.AddForce(transform.right * 2);
     }
@@ -153,7 +163,7 @@ public class GroundShake : MonoBehaviour
         //print("start of earthquake");
         while (true)
         {
-            float[] amplitudeArray = { 0f,0.5f, 1,0.5f, 0f,-0.5f, -1,-0.5f };
+            float[] amplitudeArray = { 0f,0.005f, 0.01f,0.005f, 0f,-0.005f, -0.01f,-0.005f };
             //float[] amplitudeArray = { 0f, 0.05f, 0.1f, 0.05f, 0f, -0.05f, -0.1f, -0.05f };
             //int sign = Random.Range(-1, 1);
             
@@ -161,8 +171,9 @@ public class GroundShake : MonoBehaviour
             for (int i = 0; i < amplitudeArray.Length; i++)
             {
                 print("This is working");
-                //int val = Random.Range(0, amplitudeArray.Length);
-                float force = amplitudeArray[i] * amplitude * count;
+                print(count);
+                int val = Random.Range(0, amplitudeArray.Length);
+                float force = amplitudeArray[val] * amplitude;
                 //print(amplitudeArray[i]);
                 //float force = amplitudeArray[i] * amplitude * sign;
                 //float force = (Random.Range(0, amplitudeArray.Length)) * amplitude;

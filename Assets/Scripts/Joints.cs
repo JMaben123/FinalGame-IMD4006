@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Joints : MonoBehaviour
 {
-    float x = 125f;        //disconnect amount (how hard it can bend)
+    float x = 1250f;        //disconnect amount (how hard it can bend)
 
     //Define audio player and audio files
     //public AudioSource _AudioPlayer; //audio player

@@ -143,7 +143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9027518
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2677,6 +2677,7 @@ MonoBehaviour:
   placer: {fileID: 560178338}
   placed: 0
   var: 2
+  zoomOut: 0
   _AudioPlayer: {fileID: 1021005390}
   _NoLoop: {fileID: 0}
   blockdrop1: {fileID: 8300000, guid: b00f54f7be14e7d4eab6d184444640ee, type: 3}
@@ -3064,7 +3065,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 79.05
+  m_fontSize: 79.35
   m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8428,7 +8429,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 79.05
+  m_fontSize: 79.35
   m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10809,6 +10810,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3465511619028317239, guid: 1098f84f38b114249b7a40d8bbea6e8a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5001605520560871684, guid: 1098f84f38b114249b7a40d8bbea6e8a, type: 3}
       propertyPath: m_Name
       value: Ground
@@ -10835,7 +10840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8612372596579590527, guid: 1098f84f38b114249b7a40d8bbea6e8a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.7
+      value: -1.1600001
       objectReference: {fileID: 0}
     - target: {fileID: 8612372596579590527, guid: 1098f84f38b114249b7a40d8bbea6e8a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11006,7 +11011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5747069127676410145, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5747069127676410147, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: m_CastShadows
@@ -11022,7 +11027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5747069127676410151, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: speedController
-      value: 0.25
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6561011176995049597, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: m_RootOrder
@@ -11038,11 +11043,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6561011176995049597, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6561011176995049597, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.11
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 6561011176995049597, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: m_LocalPosition.z
