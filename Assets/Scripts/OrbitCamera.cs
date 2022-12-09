@@ -55,7 +55,7 @@ public class OrbitCamera : MonoBehaviour
         arrow = ArrowPlacementSystem.arrowPlacementSystem.placed;
 
         zoomAmount = GlobalDataManager.globalDataManager.numBlocks;
-        print("arrow: " + arrow);
+        //print("arrow: " + arrow);
 
         float rotateDir = 0f;
         if (Input.GetKey(KeyCode.LeftBracket))

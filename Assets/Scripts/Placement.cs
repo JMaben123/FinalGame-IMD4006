@@ -40,7 +40,7 @@ public class Placement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("place block");
+            //Debug.Log("place block");
             placeBlock();
         }
         

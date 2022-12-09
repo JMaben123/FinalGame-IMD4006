@@ -170,6 +170,7 @@ public class GroundShake : MonoBehaviour
 
             for (int i = 0; i < amplitudeArray.Length; i++)
             {
+
                 print("This is working");
                 print(count);
                 int val = Random.Range(0, amplitudeArray.Length);
@@ -183,7 +184,7 @@ public class GroundShake : MonoBehaviour
                 
                 yield return new WaitForSeconds(frequency);
 
-                print("force Applied: " + force);
+                //print("force Applied: " + force);
 
                 if (i == amplitudeArray.Length)
                 {

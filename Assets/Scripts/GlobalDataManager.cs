@@ -59,7 +59,7 @@ public class GlobalDataManager : MonoBehaviour
     public int inventorySteel;
     public int playerPts;
 
-    public bool gameOver;
+    bool gameOver;
 
     private void Awake()
     {
@@ -123,6 +123,7 @@ public class GlobalDataManager : MonoBehaviour
             StopCoroutine(phaseTimerCount());
             EventSystem.Instance.changePhase((LevelPhase)currPhase);
             phaseTimer = 0;
+            levelReward();
         }
 
         //timerText.text = "Time Remaining In Phase: " + (60 - phaseTimer);
@@ -235,6 +236,16 @@ public class GlobalDataManager : MonoBehaviour
         }
     }
 
+    public bool getGameOver()
+    {
+        return gameOver;
+    }
+
+    public void setGameOver(bool isGameOver)
+    {
+        gameOver = isGameOver;
+    }
+
     public void resetData()
     {
         quakeActive = false;
@@ -246,5 +257,13 @@ public class GlobalDataManager : MonoBehaviour
         inventoryBrick = inventorySteel = inventoryWood = startResourceVal = 50;
         playerPts = 0;
         gameOver = false;
+    }
+
+    public void levelReward()
+    {
+        inventoryBrick += 25;
+        inventorySteel += 20;
+        inventoryWood += 20;
+        playerPts += 100;
     }
 }

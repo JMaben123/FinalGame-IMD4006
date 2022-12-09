@@ -87,6 +87,16 @@ public class EventSystem : MonoBehaviour
         }
     }
 
+    public event Action OnGameOver;
+
+    public void GameOver()
+    {
+        if(OnGameOver != null)
+        {
+            OnGameOver();
+        }
+    }
+
     public event Action<int> OnDropBlockChange;
 
     public void ChangeDropBlock(int newBlock)
