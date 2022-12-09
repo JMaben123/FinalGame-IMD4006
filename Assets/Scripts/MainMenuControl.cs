@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuControl : MonoBehaviour
 {
+    public GameObject tut;
     public void PlayGame()
     {
         SceneManager.LoadScene("MainGameScene");
@@ -15,6 +16,10 @@ public class MainMenuControl : MonoBehaviour
         Application.Quit();
     }
 
+    public void ShowTutorial()
+    {
+        tut.SetActive(true);
+    }
     public void QuitToTitle()
     {
         SceneManager.LoadScene("StartScene");

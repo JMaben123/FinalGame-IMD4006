@@ -59,7 +59,7 @@ public class GlobalDataManager : MonoBehaviour
     public int inventorySteel;
     public int playerPts;
 
-    public bool gameOver;
+    bool gameOver;
 
     private void Awake()
     {
@@ -233,6 +233,16 @@ public class GlobalDataManager : MonoBehaviour
                 Debug.Log("CHANGE FAILED BLOCK REMAINS: " + activeBlock.ToString());
                 break;
         }
+    }
+
+    public bool getGameOver()
+    {
+        return gameOver;
+    }
+
+    public void setGameOver(bool isGameOver)
+    {
+        gameOver = isGameOver;
     }
 
     public void resetData()

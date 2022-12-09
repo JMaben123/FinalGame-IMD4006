@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Joints : MonoBehaviour
 {
-    float x = 125f;        //disconnect amount (how hard it can bend)
+    public float x = 500f;        //disconnect amount (how hard it can bend)
 
     //Define audio player and audio files
     //public AudioSource _AudioPlayer; //audio player
@@ -70,6 +70,9 @@ public class Joints : MonoBehaviour
         if (gameObject.GetComponent<Joint>().connectedBody == GameObject.Find("Floor").GetComponent<Rigidbody>())
         {
             Debug.Log("YOU FAILED LLLLL OMEGALUL: " + breakForce);
+            //GlobalDataManager.globalDataManager.setGameOver(true);
+            EventSystem.Instance.GameOver();
+            Debug.Log(GlobalDataManager.globalDataManager.getGameOver());
         }
     }
 }
