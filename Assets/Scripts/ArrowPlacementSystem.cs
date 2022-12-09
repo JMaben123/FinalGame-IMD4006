@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ArrowPlacementSystem : MonoBehaviour
 {
     public static ArrowPlacementSystem arrowPlacementSystem;
-    struct Block
+    public struct Block
     {
         public string objName;
         public GameObject model;
@@ -68,6 +68,7 @@ public class ArrowPlacementSystem : MonoBehaviour
     public bool placed;
     int numOfBlocks = 0;
     public int var = 2;
+    public bool zoomOut;
     
     //Define audio player and audio files
     public AudioSource _AudioPlayer; //audio player
@@ -255,6 +256,7 @@ public class ArrowPlacementSystem : MonoBehaviour
         }
     }
 
+
     public int[] getBlockCosts()
     {
         int[] blockCosts = { activeBlock.woodCost, activeBlock.brickCost, activeBlock.steelCost, activeBlock.coinCost };
@@ -326,17 +328,19 @@ public class ArrowPlacementSystem : MonoBehaviour
         }
     }
 
-    bool canBuy(Block buyBlock)
+    public bool canBuy(Block buyBlock)
     {
         //inventory compare to cost
         if ((GlobalDataManager.globalDataManager.inventoryWood >= buyBlock.woodCost) && (GlobalDataManager.globalDataManager.inventoryBrick >= buyBlock.brickCost) && (GlobalDataManager.globalDataManager.inventorySteel >= buyBlock.steelCost) && (GlobalDataManager.globalDataManager.playerPts >= buyBlock.coinCost))
         {
             //costCard.GetComponent<Image>().color = new Color(255,255,255);
+            zoomOut = true;
             return true;
         }
         else
         {
             //costCard.GetComponent<Image>().color = new Color(204, 107, 107);
+            zoomOut = false;
             return false;
             //Debug.Log("NOT ENOUGH RESOURCES");
         }

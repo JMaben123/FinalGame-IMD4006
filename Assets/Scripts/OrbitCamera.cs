@@ -6,6 +6,7 @@ using Cinemachine;
 
 
 
+
 public class OrbitCamera : MonoBehaviour
 {
     public float rotateSpeed;
@@ -68,7 +69,11 @@ public class OrbitCamera : MonoBehaviour
 
         if (arrow == true)
         {
-            moveCamera();
+            if (ArrowPlacementSystem.arrowPlacementSystem.zoomOut == true)
+            {
+                moveCamera();
+            }
+            
         }
         lookAtObject.transform.eulerAngles += new Vector3(0, rotateDir * rotateSpeed * Time.deltaTime, 0);
     }
