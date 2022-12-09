@@ -123,6 +123,7 @@ public class GlobalDataManager : MonoBehaviour
             StopCoroutine(phaseTimerCount());
             EventSystem.Instance.changePhase((LevelPhase)currPhase);
             phaseTimer = 0;
+            levelReward();
         }
 
         //timerText.text = "Time Remaining In Phase: " + (60 - phaseTimer);
@@ -256,5 +257,13 @@ public class GlobalDataManager : MonoBehaviour
         inventoryBrick = inventorySteel = inventoryWood = startResourceVal = 50;
         playerPts = 0;
         gameOver = false;
+    }
+
+    public void levelReward()
+    {
+        inventoryBrick += 25;
+        inventorySteel += 20;
+        inventoryWood += 20;
+        playerPts += 100;
     }
 }
