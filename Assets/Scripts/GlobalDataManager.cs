@@ -118,7 +118,7 @@ public class GlobalDataManager : MonoBehaviour
             
             StartCoroutine(phaseTimerCount());
         }
-        if(currPhase == GameState.actionPhase && phaseTimer == 60)
+        if(currPhase == GameState.actionPhase && phaseTimer == 30)
         {
             StopCoroutine(phaseTimerCount());
             EventSystem.Instance.changePhase((LevelPhase)currPhase);

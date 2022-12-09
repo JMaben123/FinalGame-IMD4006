@@ -18,21 +18,21 @@ public class TiltController : MonoBehaviour
     void buttonTimer()
     {
         tiltTimer += Time.deltaTime * speedController; //This line takes the speedController variable
-        //Debug.Log("The rotator has been held down for " + tiltTimer + " seconds"); 
+        Debug.Log("The rotator has been held down for " + tiltTimer + " seconds");
     }
 
     //Controls the rotations
     void rotatorInput()
     {
-        /*if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             //Activate timer
             buttonTimer();
             //Rotate x positive (tilt upwards)
             rotateValX = tiltTimer * 1.05f;
-        }*/
+        }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             //Activate timer
             buttonTimer();
@@ -40,15 +40,15 @@ public class TiltController : MonoBehaviour
             rotateValZ = tiltTimer * 1.05f;
         }
 
-        /*if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             //Activate timer
             buttonTimer();
             //Rotate x negative (tilt downwards)
             rotateValX = -tiltTimer * 1.05f;
-        }*/
+        }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             //Activate timer
             buttonTimer();
@@ -109,7 +109,7 @@ public class TiltController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -117,11 +117,9 @@ public class TiltController : MonoBehaviour
     {
 
         canRotate = GlobalDataManager.globalDataManager.quakeActive;
-        //Debug.Log(canRotate);
-        //buttonTimer();
+
         if (canRotate)
         {
-            
             //Activate functions
             rotatorInput();
             geoTilter();
