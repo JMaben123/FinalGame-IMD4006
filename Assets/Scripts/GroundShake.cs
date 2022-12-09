@@ -46,7 +46,7 @@ public class GroundShake : MonoBehaviour
         switch (lvl)
         {
             case Levels.L0:
-                StartCoroutine(EarthquakeGenerator(0.5f, 1f, connect));
+                StartCoroutine(EarthquakeGenerator(0.5f, 10f, connect));
                 bounding = 1f;
                 break;
             case Levels.L1:
@@ -127,9 +127,10 @@ public class GroundShake : MonoBehaviour
         time = GlobalDataManager.globalDataManager.phaseTimer; 
 
         activeLevel = GlobalDataManager.globalDataManager.currLevel;
-
+        print("update check");
         lvl = (Levels)activeLevel;
         //Debug.Log(lvl);
+
 
         if (shaking == true)
         {
@@ -140,7 +141,7 @@ public class GroundShake : MonoBehaviour
         {
             rb.isKinematic = true;
             StopCoroutine(EarthquakeGenerator(frequency, amplitude, 0));
-            rb.transform.position = Vector3.Lerp(rb.transform.position, new Vector3(0, 0.25f, 0), time*Time.deltaTime);
+            rb.transform.position = Vector3.Lerp(rb.transform.position, new Vector3(0, 0.25f, 0), time * Time.deltaTime);
         }
         //rb.AddForce(transform.right * 2);
     }
@@ -155,12 +156,14 @@ public class GroundShake : MonoBehaviour
             float[] amplitudeArray = { 0f,0.5f, 1,0.5f, 0f,-0.5f, -1,-0.5f };
             //float[] amplitudeArray = { 0f, 0.05f, 0.1f, 0.05f, 0f, -0.05f, -0.1f, -0.05f };
             //int sign = Random.Range(-1, 1);
-
+            
 
             for (int i = 0; i < amplitudeArray.Length; i++)
             {
-                int val = Random.Range(0, amplitudeArray.Length);
-                float force = amplitudeArray[val] * amplitude * count;
+                print("This is working");
+                //int val = Random.Range(0, amplitudeArray.Length);
+                float force = amplitudeArray[i] * amplitude * count;
+                //print(amplitudeArray[i]);
                 //float force = amplitudeArray[i] * amplitude * sign;
                 //float force = (Random.Range(0, amplitudeArray.Length)) * amplitude;
                 //rb.AddForce(force, 0, force, ForceMode.VelocityChange);
@@ -168,11 +171,14 @@ public class GroundShake : MonoBehaviour
                 //rb.AddTorque(force, 0, force, ForceMode.Acceleration);
                 
                 yield return new WaitForSeconds(frequency);
+
                 print("force Applied: " + force);
+
                 if (i == amplitudeArray.Length)
                 {
                     i = 0;
                 }
+                yield return null;
 
                 /*if (rb.transform.position.x < -bounding || rb.transform.position.x > bounding || rb.transform.position.z < -bounding || rb.transform.position.z > bounding)
                 {
