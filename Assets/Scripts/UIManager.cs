@@ -47,9 +47,9 @@ public class UIManager : MonoBehaviour
     int ptsPerHeight = 10; //BM: pts for the height of the 
 
     //Define switches
-    bool isBlockPlaced = false;
-    bool hasPointsSent = false; //Have the points been sent?
-    bool canMoveObjects = true; //True by default cause the player should be on build phase. Sets to false once action phase begins.
+    //bool isBlockPlaced = false;
+    //bool hasPointsSent = false; //Have the points been sent?
+    //bool canMoveObjects = true; //True by default cause the player should be on build phase. Sets to false once action phase begins.
 
     //Define points value
     int points = 150;
@@ -155,7 +155,7 @@ public class UIManager : MonoBehaviour
         //{{
         //winPoints();
         //Set the flag to true so that the game isn't constantly adding points to the player
-        hasPointsSent = true;
+        //hasPointsSent = true;
         //}}
 
         //GlobalDataManager.globalDataManager.playerPts = points;

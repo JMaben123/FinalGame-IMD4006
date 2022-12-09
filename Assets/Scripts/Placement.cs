@@ -10,7 +10,7 @@ public class Placement : MonoBehaviour
     public GameObject platform;
     bool hasJoint;
     //bool collisionPlatform = false;
-    float y = 10f + 10;                          //the start height of a spawned objects
+    //float y = 10f + 10;                          //the start height of a spawned objects
     public int blockCount;
     void OnCollisionEnter(Collision collision)
     {

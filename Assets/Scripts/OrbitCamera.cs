@@ -40,8 +40,8 @@ public class OrbitCamera : MonoBehaviour
         //transposer.m_FollowOffset = new Vector3(0, 0, zVal + upAmount);
         //m_FollowOffset = new Vector3(0, 0, zVal + upAmount);
 
-        print("added block");
-        print(zVal);
+        //print("added block");
+        //print(zVal);
         arrow = false;
         ArrowPlacementSystem.arrowPlacementSystem.placed = false;
 

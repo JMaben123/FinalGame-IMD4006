@@ -18,5 +18,6 @@ public class MainMenuControl : MonoBehaviour
     public void QuitToTitle()
     {
         SceneManager.LoadScene("StartScene");
+        GlobalDataManager.globalDataManager.resetData();
     }
 }

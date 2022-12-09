@@ -120,7 +120,7 @@ public class GroundShake : MonoBehaviour
     void FixedUpdate()
     {
         connect = GlobalDataManager.globalDataManager.numBlocks;
-        print("block count earthquake: " + connect);
+        //print("block count earthquake: " + connect);
         shaking = GlobalDataManager.globalDataManager.getQuake();
         //Debug.Log("Quake is " + shaking);
 
@@ -149,7 +149,7 @@ public class GroundShake : MonoBehaviour
 
     IEnumerator EarthquakeGenerator(float frequency, float amplitude, int count)
     {
-        print("start of earthquake");
+        //print("start of earthquake");
         while (true)
         {
             float[] amplitudeArray = { 0f,0.5f, 1,0.5f, 0f,-0.5f, -1,-0.5f };

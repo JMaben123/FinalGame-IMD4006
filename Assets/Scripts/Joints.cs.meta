@@ -4,8 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - _AudioPlayer: {instanceID: 0}
-  - _NoLoop: {instanceID: 0}
+  - _NoLoop: {fileID: 6773190673894240579, guid: 6bc7ab215aff2c442be44e86d1443a4f, type: 3}
   - blockdrop1: {fileID: 8300000, guid: b00f54f7be14e7d4eab6d184444640ee, type: 3}
   - blockdrop2: {fileID: 8300000, guid: 4726aa7104154c5419f9c5be9166b676, type: 3}
   - blockdrop3: {fileID: 8300000, guid: f801aaa242231db41839460b865b1e53, type: 3}

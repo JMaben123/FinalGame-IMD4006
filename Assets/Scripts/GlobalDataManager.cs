@@ -59,6 +59,7 @@ public class GlobalDataManager : MonoBehaviour
     public int inventorySteel;
     public int playerPts;
 
+    public bool gameOver;
 
     private void Awake()
     {
@@ -86,6 +87,7 @@ public class GlobalDataManager : MonoBehaviour
         //SceneManager.SetActiveScene(startScreen);
         //StartCoroutine(phaseTimerCount());
         //timerText.text = "Time Remaining In Phase: " + phaseTimer;
+        gameOver = false;
        
     }
 
@@ -233,5 +235,16 @@ public class GlobalDataManager : MonoBehaviour
         }
     }
 
-
+    public void resetData()
+    {
+        quakeActive = false;
+        phaseActive = true;
+        phaseTimer = 0;
+        currPhase = GameState.buildPhase;
+        currLevel = 0;
+        activeBlock = AvailableBlocks.BASE_LIGHT;
+        inventoryBrick = inventorySteel = inventoryWood = startResourceVal = 50;
+        playerPts = 0;
+        gameOver = false;
+    }
 }

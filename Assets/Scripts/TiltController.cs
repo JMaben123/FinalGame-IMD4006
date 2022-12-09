@@ -18,7 +18,7 @@ public class TiltController : MonoBehaviour
     void buttonTimer()
     {
         tiltTimer += Time.deltaTime * speedController; //This line takes the speedController variable
-        Debug.Log("The rotator has been held down for " + tiltTimer + " seconds"); 
+        //Debug.Log("The rotator has been held down for " + tiltTimer + " seconds"); 
     }
 
     //Controls the rotations

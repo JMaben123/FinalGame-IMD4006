@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Joints : MonoBehaviour
 {
-    float x = 1100f;        //disconnect amount (how hard it can bend)
+    float x = 125f;        //disconnect amount (how hard it can bend)
 
     //Define audio player and audio files
-    public AudioSource _AudioPlayer; //audio player
+    //public AudioSource _AudioPlayer; //audio player
     public AudioSource _NoLoop; //audio player without loop
     public AudioClip blockdrop1; //block drop
     public AudioClip blockdrop2; 
@@ -62,5 +62,14 @@ public class Joints : MonoBehaviour
 
         }
 
+    }
+
+    private void OnJointBreak(float breakForce)
+    {
+        
+        if (gameObject.GetComponent<Joint>().connectedBody == GameObject.Find("Floor").GetComponent<Rigidbody>())
+        {
+            Debug.Log("YOU FAILED LLLLL OMEGALUL: " + breakForce);
+        }
     }
 }

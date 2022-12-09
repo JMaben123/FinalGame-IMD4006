@@ -63,10 +63,10 @@ public class ArrowPlacementSystem : MonoBehaviour
 
     public GameObject placer;
     bool hasJoint;
-    bool collisionPlatform = false;
-    float y = 10f + 10;
+    //bool collisionPlatform = false;
+    //float y = 10f + 10;
     public bool placed;
-    int numOfBlocks = 0;
+    //int numOfBlocks = 0;
     public int var = 2;
     
     //Define audio player and audio files
@@ -169,8 +169,8 @@ public class ArrowPlacementSystem : MonoBehaviour
         {
             Instantiate(activeBlock.model, new Vector3(placer.transform.position.x, placer.transform.position.y, placer.transform.position.z), Quaternion.identity);
             GlobalDataManager.globalDataManager.numBlocks += 1;
-            Debug.Log(GlobalDataManager.globalDataManager.numBlocks);
-            Debug.Log(GlobalDataManager.globalDataManager.inventoryWood);
+            //Debug.Log(GlobalDataManager.globalDataManager.numBlocks);
+            //Debug.Log(GlobalDataManager.globalDataManager.inventoryWood);
             //EventSystem.Instance.blockPlaced();
             //Debug.Log("T pressed");
             moveUp();

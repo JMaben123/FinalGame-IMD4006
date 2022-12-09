@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     public KeyCode pause = KeyCode.Escape;
 
-    private bool UIUpdated = false;
+    //private bool UIUpdated = false;
 
     int playerPts;
     // Start is called before the first frame update
