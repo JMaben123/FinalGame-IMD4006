@@ -16,7 +16,7 @@ public class OrbitCamera : MonoBehaviour
     CinemachineTransposer transposer;
     bool arrow;
     public Transform lookAtObject;
-
+    public static OrbitCamera orbitCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +25,35 @@ public class OrbitCamera : MonoBehaviour
         transposer = vcam.GetCinemachineComponent<CinemachineTransposer>();
         //transposer = vcam.GetComponent<CinemachineTransposer>();
         transposer.m_FollowOffset = new Vector3(0f, 7f, -13f);
-        
+
         //print("block count: " + zoomAmount);
-        
+        if (orbitCamera == null)
+        {
+            //DontDestroyOnLoad(gameObject);
+            orbitCamera = this;
+        }
+        else if (orbitCamera != this)
+        {
+            Destroy(gameObject);
+        }
     }
+
+
+    public IEnumerator Shake()
+    {
+        Vector3 originalPos = transposer.m_FollowOffset;
+
+        float yVal = Random.Range(-0.25f, 0.25f);
+        print("working");
+        transposer.m_FollowOffset = new Vector3(originalPos.x, transposer.m_FollowOffset.y + yVal, originalPos.z);
+        if(transposer.m_FollowOffset.y >9.0f || transposer.m_FollowOffset.y < 5.0f)
+        {
+            transposer.m_FollowOffset.y = 7.0f;
+        }
+        yield return null;
+    }
+
+   
 
 
     void moveCamera()
@@ -75,6 +100,7 @@ public class OrbitCamera : MonoBehaviour
             }
             
         }
+
         lookAtObject.transform.eulerAngles += new Vector3(0, rotateDir * rotateSpeed * Time.deltaTime, 0);
     }
 

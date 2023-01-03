@@ -9,10 +9,13 @@ public class GroundShake : MonoBehaviour
     public float time;
     public float bounding;
     float frequency;
-    float amplitude;
+    public float amplitude;
     int activeLevel;
-    GlobalDataManager globalDataManager;
+    //GlobalDataManager globalDataManager;
     int connect;
+    public static GroundShake groundShake;
+    
+
 
 
     //NOTE: USE MODIFIER TO ADD UP MASS OF ALL OBJECTS ON THE FLOOR AND ADD AS A MULTIPLIER LIKE THE AMPLITUDE.
@@ -44,15 +47,25 @@ public class GroundShake : MonoBehaviour
         activeLevel = 0;
 
         time = GlobalDataManager.globalDataManager.phaseTimer;
+        frequency = 1.0f;
+        amplitude = 0.5f;
 
-       /* if (globalDataManager.quakeActive == true)
+        /* if (globalDataManager.quakeActive == true)
+         {
+         }
+         if(globalDataManager.quakeActive == false)
+         {
+             globalDataManager.quakeActive = true;
+         }*/
+        /*if (groundShake == null)
         {
+            //DontDestroyOnLoad(gameObject);
+            groundShake = this;
         }
-        if(globalDataManager.quakeActive == false)
+        else if (groundShake != this)
         {
-            globalDataManager.quakeActive = true;
+            Destroy(gameObject);
         }*/
-
 
     }
 
@@ -160,6 +173,8 @@ public class GroundShake : MonoBehaviour
 
     IEnumerator EarthquakeGenerator(float frequency, float amplitude, int count)
     {
+       
+
         //print("start of earthquake");
         while (true)
         {

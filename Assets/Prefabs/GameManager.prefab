@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1623385405141714997}
   - component: {fileID: 3877254681557388938}
   - component: {fileID: 3877254681557388936}
-  - component: {fileID: 3877254681557388937}
   - component: {fileID: 3877254681557388934}
   - component: {fileID: 3877254681557388935}
   - component: {fileID: 3877254681557388932}
@@ -49,11 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d76e34b62a9004d947257776c32f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj1: {fileID: 6162189061509785132, guid: 639faaea40b4fc346a40f35d76e1f878, type: 3}
-  obj2: {fileID: 5355487039303121389, guid: ae673267669b4a64ba0935d1b2b78263, type: 3}
-  obj3: {fileID: 0}
-  obj4: {fileID: 0}
   platform: {fileID: 5329987527304790444, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
+  blockCount: 0
 --- !u!114 &3877254681557388936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3162824c23730a46828d0e7479e6c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeBlock: 0
   phaseTimer: 0
   phaseActive: 0
   currPhase: 0
@@ -75,24 +72,22 @@ MonoBehaviour:
     m_Handle: 0
   endGame:
     m_Handle: 0
-  playerPts: 0
+  activeWoodCost: 0
+  activeBrickCost: 0
+  activeSteelCost: 0
+  activeCoinCost: 0
   quakeActive: 0
   volume: 1
   phaseEnding: 0
   nextPhaseStarting: 0
   numBlocks: 0
---- !u!114 &3877254681557388937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4390520791496476441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2969d56b67d9d946aef9274e4e953f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  currLevel: 0
+  startResourceVal: 0
+  inventoryWood: 0
+  inventoryBrick: 0
+  inventorySteel: 0
+  playerPts: 0
+  placer: {fileID: 0}
 --- !u!114 &3877254681557388934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiltLeft: 97
-  tileRight: 100
+  tiltRight: 101
+  OrbitLeft: 276
+  OrbitRight: 275
   placeBlock: 109
   pause: 27
 --- !u!114 &3877254681557388935

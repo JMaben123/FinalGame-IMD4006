@@ -473,6 +473,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 976805410}
     m_Modifications:
+    - target: {fileID: -3232244965550437307, guid: 9b8a51481b8a2294eb056e08a8f6e281, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2432491723127290357, guid: 9b8a51481b8a2294eb056e08a8f6e281, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -698,6 +702,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 976805410}
     m_Modifications:
+    - target: {fileID: -3232244965550437307, guid: 9b8a51481b8a2294eb056e08a8f6e281, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2432491723127290357, guid: 9b8a51481b8a2294eb056e08a8f6e281, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -872,21 +880,21 @@ MonoBehaviour:
 
     W,A,S,D to change where the block drops
 
-    [
-    , ] to rotate the camera
+    Brackets([])
+    to rotate the camera
 
     SPACE to drop a block
 
-    Left/Right arrow to
-    change what block drops
+    Q,E to change what block
+    drops
 
 
     During Earthquake:
 
-    W,A,S,D to tilt the building
-    to keep it up
+    W,A,S,D to tilt the building to keep it up
 
-    Earthquake lasts 30 seconds'
+    Earthquake
+    lasts 30 seconds'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ffe3081e95a08246be0eb43473502cd, type: 2}
   m_sharedMaterial: {fileID: 2424094930898433276, guid: 4ffe3081e95a08246be0eb43473502cd, type: 2}
@@ -913,7 +921,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.3
+  m_fontSize: 10.85
   m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2451,6 +2459,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1563154871}
     m_Modifications:
+    - target: {fileID: 2108290752920000862, guid: 0aa6c5c5b490ebb40ae57de8e1ab6578, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3717075590195541800, guid: 0aa6c5c5b490ebb40ae57de8e1ab6578, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2769,6 +2781,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 428772577}
     m_Modifications:
+    - target: {fileID: -1857446420761321497, guid: e665d6e56492c1e47baa623c24250323, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 993077995416715238, guid: e665d6e56492c1e47baa623c24250323, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2779,7 +2795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 993077995416715238, guid: e665d6e56492c1e47baa623c24250323, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.61
+      value: -4.76
       objectReference: {fileID: 0}
     - target: {fileID: 993077995416715238, guid: e665d6e56492c1e47baa623c24250323, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2831,6 +2847,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 428772577}
     m_Modifications:
+    - target: {fileID: 4846211633617240789, guid: 7bad5d3ccb8ad664395d2a1cb75a36fa, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9037110708527862053, guid: 7bad5d3ccb8ad664395d2a1cb75a36fa, type: 3}
       propertyPath: m_Name
       value: lightMid
@@ -2845,7 +2865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9079391959024633289, guid: 7bad5d3ccb8ad664395d2a1cb75a36fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.0800002
+      value: -2.2300003
       objectReference: {fileID: 0}
     - target: {fileID: 9079391959024633289, guid: 7bad5d3ccb8ad664395d2a1cb75a36fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4581,6 +4601,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mediumTop
       objectReference: {fileID: 0}
+    - target: {fileID: 6059804019235087601, guid: 0c6872bb4c6421a499c7e74bcc47241a, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c6872bb4c6421a499c7e74bcc47241a, type: 3}
 --- !u!1001 &1092482846
@@ -5177,6 +5201,10 @@ PrefabInstance:
     - target: {fileID: 5747069127676410144, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747069127676410145, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5747069127676410151, guid: a136fe95322b05845b11e3e006c09a9c, type: 3}
       propertyPath: m_Enabled
@@ -6189,6 +6217,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 428772577}
     m_Modifications:
+    - target: {fileID: 4846211633617240789, guid: 7bad5d3ccb8ad664395d2a1cb75a36fa, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9037110708527862053, guid: 7bad5d3ccb8ad664395d2a1cb75a36fa, type: 3}
       propertyPath: m_Name
       value: lightMid (1)
@@ -6203,7 +6235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9079391959024633289, guid: 7bad5d3ccb8ad664395d2a1cb75a36fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.1500001
       objectReference: {fileID: 0}
     - target: {fileID: 9079391959024633289, guid: 7bad5d3ccb8ad664395d2a1cb75a36fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6654,6 +6686,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1563154871}
     m_Modifications:
+    - target: {fileID: -7420115337780395048, guid: a257ced331a25c944abf54bcc32be4b4, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 995082770425698910, guid: a257ced331a25c944abf54bcc32be4b4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6716,6 +6752,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1563154871}
     m_Modifications:
+    - target: {fileID: -3603336382534250969, guid: 65b2a50f9ac553a49bc12c14836eeada, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6430427777288538520, guid: 65b2a50f9ac553a49bc12c14836eeada, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -7045,6 +7085,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 976805410}
     m_Modifications:
+    - target: {fileID: -9096468194461445003, guid: 329c1a2484981804e91436d44c21dc60, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2309751817388783274, guid: 329c1a2484981804e91436d44c21dc60, type: 3}
       propertyPath: m_Name
       value: mediumBase
@@ -7102,6 +7146,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 428772577}
     m_Modifications:
+    - target: {fileID: -5862976096013626649, guid: 5ad081e84aaaf2b488ecdc8a22d1162a, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3867235290389180543, guid: 5ad081e84aaaf2b488ecdc8a22d1162a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7124,7 +7172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3867235290389180543, guid: 5ad081e84aaaf2b488ecdc8a22d1162a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.04
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: 3867235290389180543, guid: 5ad081e84aaaf2b488ecdc8a22d1162a, type: 3}
       propertyPath: m_LocalPosition.z

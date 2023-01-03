@@ -9,6 +9,7 @@ public class MainMenuControl : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene("MainGameScene");
+        Time.timeScale = 1;
     }
 
     public void CloseGame()
@@ -24,5 +25,8 @@ public class MainMenuControl : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
         GlobalDataManager.globalDataManager.resetData();
+
+        
+        
     }
 }

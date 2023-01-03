@@ -8,7 +8,7 @@ public class TiltController : MonoBehaviour
     public float rotateValX = 0.0f;
     public float rotateValZ = 0.0f;
     private float tiltTimer = 0.0f;
-    public float speedController = 1.5f; //This value controls the speed in buttonTimer()
+    public float speedController; //This value controls the speed in buttonTimer()
     //Define rigidbody
     Rigidbody rbRotate;
 

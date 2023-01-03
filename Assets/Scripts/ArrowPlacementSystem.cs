@@ -14,6 +14,7 @@ public class ArrowPlacementSystem : MonoBehaviour
         public int brickCost;
         public int steelCost;
         public int coinCost;
+        
 
         public Block(string name, GameObject GO, int wc, int bc, int sc, int cc)
         {
@@ -58,7 +59,7 @@ public class ArrowPlacementSystem : MonoBehaviour
 
     //public GameObject costCard;
 
-    public float x = 500f;                                         //Variable for the arrow force
+    public float speed = 500f;                                         //Variable for the arrow force
     public int spawnHeight = 10;                                    //Variable for spawn height
 
     public GameObject placer;
@@ -67,7 +68,7 @@ public class ArrowPlacementSystem : MonoBehaviour
     //float y = 10f + 10;
     public bool placed;
     //int numOfBlocks = 0;
-    public int var = 2;
+    public int moveUpAmount = 2;
     public bool zoomOut;
     
     //Define audio player and audio files
@@ -78,7 +79,7 @@ public class ArrowPlacementSystem : MonoBehaviour
     public AudioClip blockdrop3; 
     public AudioClip equake; //earthquake
     int randomSFX;
-
+    //public GlobalDataManager globalDataManager;
     private void Awake()
     {
         lightBase = new Block("BASE_LIGHT", lightBaseGO, 5, 10, 3, 50);
@@ -97,10 +98,12 @@ public class ArrowPlacementSystem : MonoBehaviour
 
         currentBlockIndex = 0;
         activeBlock = availBlocks[currentBlockIndex];
+        gameObject.GetComponent<Renderer>().enabled = true;
+        placer.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         if (arrowPlacementSystem == null)
         {
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             arrowPlacementSystem = this;
         }
         else if (arrowPlacementSystem != this)
@@ -112,55 +115,76 @@ public class ArrowPlacementSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        changeActiveBlock();
 
-        setActiveCost();
+        if(GlobalDataManager.globalDataManager.getGameState() == GlobalDataManager.GameState.buildPhase)
+        {
+            changeActiveBlock();
+            setActiveCost();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                placeBlock();
+                placed = true;
+            }
+            if (Input.GetKeyDown(KeyCode.W))                                //Arrow Movement System
+            {
+                gameObject.GetComponent<Rigidbody>().AddForce(0, 0, speed);
+            }
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                gameObject.GetComponent<Rigidbody>().AddForce(0, 0, -speed);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                gameObject.GetComponent<Rigidbody>().AddForce(0, 0, -speed);
+            }
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                gameObject.GetComponent<Rigidbody>().AddForce(0, 0, speed);
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                gameObject.GetComponent<Rigidbody>().AddForce(-speed, 0, 0);
+            }
+            if (Input.GetKeyUp(KeyCode.A))
+            {
+                gameObject.GetComponent<Rigidbody>().AddForce(speed, 0, 0);
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                gameObject.GetComponent<Rigidbody>().AddForce(speed, 0, 0);
+            }
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                gameObject.GetComponent<Rigidbody>().AddForce(-speed, 0, 0);
+            }
+            
+        }
+        else if(GlobalDataManager.globalDataManager.getGameState() == GlobalDataManager.GameState.actionPhase)
+        {
+            placer.GetComponent<Rigidbody>().velocity = Vector3.zero; 
+            placer.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            placeBlock();
-            placed = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.W))                                //Arrow Movement System
-        {
-            gameObject.GetComponent<Rigidbody>().AddForce(0, 0, x);
-        }
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            gameObject.GetComponent<Rigidbody>().AddForce(0, 0, -x);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            gameObject.GetComponent<Rigidbody>().AddForce(0, 0, -x);
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            gameObject.GetComponent<Rigidbody>().AddForce(0, 0, x);
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            gameObject.GetComponent<Rigidbody>().AddForce(-x, 0, 0);
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            gameObject.GetComponent<Rigidbody>().AddForce(x, 0, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            gameObject.GetComponent<Rigidbody>().AddForce(x, 0, 0);
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            gameObject.GetComponent<Rigidbody>().AddForce(-x, 0, 0);
-        }
 
+       /* if(GlobalDataManager.globalDataManager.getScene() == GlobalDataManager.globalDataManager.startScreen)
+        {
+            //gameObject.SetActive(false);
+            gameObject.GetComponent<Renderer>().enabled = false;
+            //Destroy(gameObject);
+        }
+        if(GlobalDataManager.globalDataManager.getScene() == GlobalDataManager.globalDataManager.mainGame)
+        {
+            //gameObject.SetActive(true);
+            //gameObject.GetComponent<Renderer>().enabled = true;
+            
+        }*/
     }
 
     public void moveUp()
     {
 
-        gameObject.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y + var, transform.position.z);
+        gameObject.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y + moveUpAmount, transform.position.z);
 
     }
 
@@ -174,10 +198,11 @@ public class ArrowPlacementSystem : MonoBehaviour
             //Debug.Log(GlobalDataManager.globalDataManager.inventoryWood);
             //EventSystem.Instance.blockPlaced();
             //Debug.Log("T pressed");
-            moveUp();
+            //moveUp();
 
             applyCost(activeBlock.objName);
         }
+
     }
 
     void setActiveCost()
@@ -190,7 +215,7 @@ public class ArrowPlacementSystem : MonoBehaviour
 
     void changeActiveBlock()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if(currentBlockIndex+1 == availBlocks.Length)
             {
@@ -201,7 +226,7 @@ public class ArrowPlacementSystem : MonoBehaviour
                 currentBlockIndex++;
             }            
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (currentBlockIndex == 0)
             {

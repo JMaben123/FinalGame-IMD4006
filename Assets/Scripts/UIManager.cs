@@ -28,9 +28,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI steelCostText;
     public TextMeshProUGUI coinCostText;
 
+    public TextMeshProUGUI timeLeft;
+
     public GameObject placer;
 
     public GameObject BuildUI;
+
+    public GameObject timerUI;
 
     public GameObject activeBlockUI;
 
@@ -53,7 +57,7 @@ public class UIManager : MonoBehaviour
 
     //Define points value
     int points = 150;
-    GlobalDataManager globalData;
+    //GlobalDataManager globalData;
 
     
 
@@ -75,14 +79,14 @@ public class UIManager : MonoBehaviour
         //If the block is being moved around on the screen, make it so that no other materials can be interacted with in the menu
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
         points = 1500; //BM: start with 60 points to spend on 
-        
         GlobalDataManager.globalDataManager.playerPts = points;
-        globalData = GlobalDataManager.globalDataManager;
-        numLevels = globalData.numBlocks;
+        numLevels = GlobalDataManager.globalDataManager.numBlocks;
+        placer.SetActive(false);
     }
 
     // Update is called once per frame
@@ -92,14 +96,17 @@ public class UIManager : MonoBehaviour
         //points = calculatePoints();
         points = GlobalDataManager.globalDataManager.playerPts;
         //control display for phase specific UI elements
-        if(globalData.currPhase == GlobalDataManager.GameState.actionPhase)
+        timeLeft.text = string.Format("{00}",GlobalDataManager.globalDataManager.phaseTimer);
+        if(GlobalDataManager.globalDataManager.currPhase == GlobalDataManager.GameState.actionPhase)
         {
             BuildUI.SetActive(false);
+            timerUI.SetActive(true);
             placer.SetActive(false);
         }
-        else
+        if(GlobalDataManager.globalDataManager.currPhase == GlobalDataManager.GameState.buildPhase)
         {
             BuildUI.SetActive(true);
+            timerUI.SetActive(false);
             placer.SetActive(true);
         }
 

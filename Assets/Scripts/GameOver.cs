@@ -8,6 +8,7 @@ public class GameOver : MonoBehaviour
 
     public GameObject gameOverScreen;
     public TextMeshProUGUI pointsText;
+    
     // Start is called before the first frame update
     void Start()
     {

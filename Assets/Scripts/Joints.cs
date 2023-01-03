@@ -5,7 +5,7 @@ using UnityEngine;
 public class Joints : MonoBehaviour
 {
 
-    public float x = 500f;        //disconnect amount (how hard it can bend)
+    public float breakAmount = 500f;        //disconnect amount (how hard it can bend)
 
 
     //Define audio player and audio files
@@ -33,7 +33,7 @@ public class Joints : MonoBehaviour
         {
             //gameObject.AddComponent<FixedJoint>().breakForce = 2000;    //How much force is needed to break the joint 
             //gameObject.AddComponent<FixedJoint>().breakTorque = 2000;   //How much stress is needed to break the joint
-            gameObject.AddComponent<FixedJoint>().breakTorque = x;
+            gameObject.AddComponent<FixedJoint>().breakTorque = breakAmount;
             gameObject.GetComponent<FixedJoint>().connectedBody = collision.rigidbody;
             hasJoint = true;
             //Play a random sound once block is dropped
@@ -50,7 +50,7 @@ public class Joints : MonoBehaviour
                     _NoLoop.Play();
                     break;
                 case 3:
-                    _NoLoop.clip = blockdrop1;
+                    _NoLoop.clip = blockdrop3;
 
                     _NoLoop.Play();
                     break;

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class GlobalDataManager : MonoBehaviour
 {
     public static GlobalDataManager globalDataManager;
-    public TextMeshProUGUI timerText;
     //game phases to control what the player can do at what time
     public enum GameState
     {
@@ -45,6 +44,7 @@ public class GlobalDataManager : MonoBehaviour
     public bool quakeActive;
 
     public float volume = 1f;
+    public int totalTime = 30;
 
     public bool phaseEnding = false;
     public bool nextPhaseStarting = false;
@@ -60,6 +60,13 @@ public class GlobalDataManager : MonoBehaviour
     public int playerPts;
 
     bool gameOver;
+    public GameObject placer;
+    //public OrbitCamera orbitCamera;
+    public AudioSource source; //audio player without loop
+    public AudioClip eQuake; //block drop
+    bool audioOn;
+
+
 
     private void Awake()
     {
@@ -72,7 +79,8 @@ public class GlobalDataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        //placer.GetComponent<Renderer>().enabled = true;
+        source.clip = eQuake;
     }
     // Start is called before the first frame update
     void Start()
@@ -88,7 +96,13 @@ public class GlobalDataManager : MonoBehaviour
         //StartCoroutine(phaseTimerCount());
         //timerText.text = "Time Remaining In Phase: " + phaseTimer;
         gameOver = false;
-       
+        //placer.SetActive(false);
+        audioOn = true;
+        
+
+
+
+
     }
 
     // Update is called once per frame
@@ -101,29 +115,48 @@ public class GlobalDataManager : MonoBehaviour
         {
             phaseActive = true;
         }
-        
+
+        audioPlayer(audioOn);
 
         if (currPhase == GameState.buildPhase){
             
             StopCoroutine(phaseTimerCount());
-            phaseTimer = 0;
+            OrbitCamera.orbitCamera.StopCoroutine(OrbitCamera.orbitCamera.Shake());
+            phaseTimer = totalTime;
             quakeActive = false;
+            audioOn = true;
+            
+
         }
         if(currPhase == GameState.actionPhase)
         {
             quakeActive = true;
+            OrbitCamera.orbitCamera.StartCoroutine(OrbitCamera.orbitCamera.Shake());
+            //source.Play();
+            audioOn = false;
+        }
+        if(currPhase == GameState.actionPhase && phaseTimer == totalTime)
+        {           
+            StartCoroutine(phaseTimerCount());
+            //OrbitCamera.orbitCamera.StartCoroutine(OrbitCamera.orbitCamera.Shake(totalTime,5));
+            
+            
         }
         if(currPhase == GameState.actionPhase && phaseTimer == 0)
         {
-            
-            StartCoroutine(phaseTimerCount());
-        }
-        if(currPhase == GameState.actionPhase && phaseTimer == 30)
-        {
             StopCoroutine(phaseTimerCount());
+            OrbitCamera.orbitCamera.StopCoroutine(OrbitCamera.orbitCamera.Shake());
             EventSystem.Instance.changePhase((LevelPhase)currPhase);
-            phaseTimer = 0;
+            phaseTimer = totalTime;
             levelReward();
+            placer.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            audioOn = true;
+
+        }
+
+        if(getScene() == globalDataManager.startScreen)
+        {
+            audioOn = true;
         }
 
         //timerText.text = "Time Remaining In Phase: " + (60 - phaseTimer);
@@ -141,14 +174,39 @@ public class GlobalDataManager : MonoBehaviour
         }*/
     }
 
+
+    void audioPlayer(bool playing)
+    {
+        if(playing == false && source.isPlaying == false)
+        {
+            source.Play();
+        }
+        if(playing==true && source.isPlaying == true)
+        {
+            source.Stop();
+            
+        }
+    }
+
+
     IEnumerator phaseTimerCount()
     {
+        
         while (phaseActive)
         {
             //Debug.Log("+1 phase timer");
-
-            phaseTimer += 1;
-            yield return new WaitForSeconds(1f);
+            if(phaseTimer != 0)
+            {
+                phaseTimer -= 1;
+                //print("time: " + phaseTimer);
+                yield return new WaitForSeconds(1f);
+            }
+            if(phaseTimer == 0)
+            {
+                phaseTimer = totalTime;
+                yield break; 
+            }
+            
         }
     }
 
@@ -164,13 +222,19 @@ public class GlobalDataManager : MonoBehaviour
         return currPhase;
     }
 
-    void setScene(string sceneName)
+   public void setScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
+    public Scene getScene()
+    {
+        return SceneManager.GetActiveScene();
+    }
+
     public void startTimer()
     {
+        StopAllCoroutines();
         StartCoroutine(phaseTimerCount());
     }
 
@@ -257,6 +321,7 @@ public class GlobalDataManager : MonoBehaviour
         inventoryBrick = inventorySteel = inventoryWood = startResourceVal = 50;
         playerPts = 0;
         gameOver = false;
+        audioOn = false;
     }
 
     public void levelReward()
